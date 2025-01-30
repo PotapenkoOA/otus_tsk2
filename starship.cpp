@@ -1,15 +1,25 @@
 #include <starship.h>
 
-cstarship::cstarship(/* args */)
+SpaceShip::SpaceShip(IMove *pMove,vector<double> vVelocity, vector<double> vLocation)
 {
+    m_pMove = pMove;
+
+    m_location = vLocation;
+
+    m_velocity = vVelocity;
 }
 
-cstarship::~cstarship()
+SpaceShip::~SpaceShip()
 {
+
 }
 
-void ctarship::move()
+void SpaceShip::move()
 {
-    pMove->Execute();
+    //m_pMove->getLocation();
+}
 
+vector<double> SpaceShip::getLocation()
+{
+    return m_location;
 }
