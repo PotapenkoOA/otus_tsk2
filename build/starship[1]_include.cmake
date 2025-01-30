@@ -1,5 +1,0 @@
-if(EXISTS "C:/Projects/otus_2tsk/build/starship[1]_tests.cmake")
-  include("C:/Projects/otus_2tsk/build/starship[1]_tests.cmake")
-else()
-  add_test(starship_NOT_BUILT starship_NOT_BUILT)
-endif()

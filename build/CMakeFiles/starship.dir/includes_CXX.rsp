@@ -1,1 +1,0 @@
--IC:/Projects/otus_2tsk/googletest/include -IC:/Projects/otus_2tsk/googlemock/include -isystem C:/Projects/otus_2tsk/googletest/googletest/include -isystem C:/Projects/otus_2tsk/googletest/googletest -isystem C:/Projects/otus_2tsk/googletest/googlemock/include -isystem C:/Projects/otus_2tsk/googletest/googlemock
