@@ -8,9 +8,9 @@ enable_testing() #to  discover tests in test explorer
 
 add_subdirectory(googletest) # add googletest subdirectory
 
-include_directories(googletest/include) # this is so we can #include <gtest/gtest.h>
+#include_directories(googletest/include) # this is so we can #include <gtest/gtest.h>
 
-include_directories(googlemock/include) # this is so we can #include <gtest/gtest.h>
+#include_directories(googlemock/include) # this is so we can #include <gtest/gtest.h>
 
 add_executable(starship test_move.cpp)
 
