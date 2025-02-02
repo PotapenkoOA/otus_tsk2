@@ -1,17 +1,28 @@
+#ifndef __MOVE
+#define __MOVE
 
-#include <vector>
+#include "movingobject.h"
+
+#include <iostream>
 using namespace std;
 
-class IMove{
-    virtual vector<double> getVelocity() = 0;
-    virtual vector<double> getLocation() = 0;
-    virtual void setLocation( vector<double> newValue ) = 0;
-};
 
-class Move: public IMove{
+class Move {
+
+    IMovingObject *pObject;
 
     public: 
-    Move(IMove *obj);
+        Move(IMovingObject *obj)
+        {
+            pObject = obj;
+        }
 
-    void Execute();
+        void Execute()
+        {
+            pObject->setLocation( pObject->getLocation() + pObject->getVelocity()) ;
+
+        }
 };
+
+
+#endif
