@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("C:/Projects/otus_2tsk/build/googletest/cmake_install.cmake")
+  include("C:/Projects/otus_2tsk/build/_deps/googletest-build/cmake_install.cmake")
 
 endif()
 

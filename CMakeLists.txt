@@ -14,7 +14,15 @@ enable_testing() #to  discover tests in test explorer
 #)
 #FetchContent_MakeAvailable(googletest)
 
-add_subdirectory(googletest) # add googletest subdirectory
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  GIT_REPOSITORY https://github.com/google/googletest.git
+  GIT_TAG        v1.14.0
+)
+FetchContent_MakeAvailable(googletest)
+
+#add_subdirectory(googletest) #add googletest subdirectory
 
 include_directories(googletest/include) # this is so we can #include <gtest/gtest.h>
 
