@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/starship.dir/test_move.cpp.obj"
-  "CMakeFiles/starship.dir/test_move.cpp.obj.d"
+  "CMakeFiles/starship.dir/main.cpp.obj"
+  "CMakeFiles/starship.dir/main.cpp.obj.d"
   "libstarship.dll.a"
   "starship.exe"
   "starship.exe.manifest"

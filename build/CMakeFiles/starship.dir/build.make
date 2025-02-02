@@ -71,29 +71,29 @@ include CMakeFiles/starship.dir/flags.make
 CMakeFiles/starship.dir/codegen:
 .PHONY : CMakeFiles/starship.dir/codegen
 
-CMakeFiles/starship.dir/test_move.cpp.obj: CMakeFiles/starship.dir/flags.make
-CMakeFiles/starship.dir/test_move.cpp.obj: CMakeFiles/starship.dir/includes_CXX.rsp
-CMakeFiles/starship.dir/test_move.cpp.obj: C:/Projects/otus_2tsk/test_move.cpp
-CMakeFiles/starship.dir/test_move.cpp.obj: CMakeFiles/starship.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Projects\otus_2tsk\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/starship.dir/test_move.cpp.obj"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/starship.dir/test_move.cpp.obj -MF CMakeFiles\starship.dir\test_move.cpp.obj.d -o CMakeFiles\starship.dir\test_move.cpp.obj -c C:\Projects\otus_2tsk\test_move.cpp
+CMakeFiles/starship.dir/main.cpp.obj: CMakeFiles/starship.dir/flags.make
+CMakeFiles/starship.dir/main.cpp.obj: CMakeFiles/starship.dir/includes_CXX.rsp
+CMakeFiles/starship.dir/main.cpp.obj: C:/Projects/otus_2tsk/main.cpp
+CMakeFiles/starship.dir/main.cpp.obj: CMakeFiles/starship.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Projects\otus_2tsk\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/starship.dir/main.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/starship.dir/main.cpp.obj -MF CMakeFiles\starship.dir\main.cpp.obj.d -o CMakeFiles\starship.dir\main.cpp.obj -c C:\Projects\otus_2tsk\main.cpp
 
-CMakeFiles/starship.dir/test_move.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/starship.dir/test_move.cpp.i"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Projects\otus_2tsk\test_move.cpp > CMakeFiles\starship.dir\test_move.cpp.i
+CMakeFiles/starship.dir/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/starship.dir/main.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Projects\otus_2tsk\main.cpp > CMakeFiles\starship.dir\main.cpp.i
 
-CMakeFiles/starship.dir/test_move.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/starship.dir/test_move.cpp.s"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Projects\otus_2tsk\test_move.cpp -o CMakeFiles\starship.dir\test_move.cpp.s
+CMakeFiles/starship.dir/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/starship.dir/main.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Projects\otus_2tsk\main.cpp -o CMakeFiles\starship.dir\main.cpp.s
 
 # Object files for target starship
 starship_OBJECTS = \
-"CMakeFiles/starship.dir/test_move.cpp.obj"
+"CMakeFiles/starship.dir/main.cpp.obj"
 
 # External object files for target starship
 starship_EXTERNAL_OBJECTS =
 
-starship.exe: CMakeFiles/starship.dir/test_move.cpp.obj
+starship.exe: CMakeFiles/starship.dir/main.cpp.obj
 starship.exe: CMakeFiles/starship.dir/build.make
 starship.exe: lib/libgtest.a
 starship.exe: lib/libgmock.a

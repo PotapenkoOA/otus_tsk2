@@ -1,5 +1,5 @@
 CMakeFiles/starship.dir/test_move.cpp.obj: \
- C:\Projects\otus_2tsk\test_move.cpp C:\Projects\otus_2tsk\starship.h \
+ C:\Projects\otus_2tsk\test_move.cpp \
  C:/Projects/otus_2tsk/googletest/googletest/include/gtest/gtest.h \
  C:/msys64/ucrt64/include/c++/14.2.0/cstddef \
  C:/msys64/ucrt64/include/c++/14.2.0/x86_64-w64-mingw32/bits/c++config.h \
@@ -272,4 +272,4 @@ CMakeFiles/starship.dir/test_move.cpp.obj: \
  C:/Projects/otus_2tsk/googletest/googlemock/include/gmock/internal/custom/gmock-generated-actions.h \
  C:/Projects/otus_2tsk/googletest/googlemock/include/gmock/gmock-more-matchers.h \
  C:/Projects/otus_2tsk/googletest/googlemock/include/gmock/gmock-nice-strict.h \
- C:\Projects\otus_2tsk\move.h
+ C:\Projects\otus_2tsk\movingobject.h C:\Projects\otus_2tsk\move.h

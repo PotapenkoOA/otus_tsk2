@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/Projects/otus_2tsk/test_move.cpp" "CMakeFiles/starship.dir/test_move.cpp.obj" "gcc" "CMakeFiles/starship.dir/test_move.cpp.obj.d"
+  "C:/Projects/otus_2tsk/main.cpp" "CMakeFiles/starship.dir/main.cpp.obj" "gcc" "CMakeFiles/starship.dir/main.cpp.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

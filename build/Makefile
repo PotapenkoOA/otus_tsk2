@@ -235,29 +235,29 @@ gtest_main/fast:
 	$(MAKE) $(MAKESILENT) -f googletest\googletest\CMakeFiles\gtest_main.dir\build.make googletest/googletest/CMakeFiles/gtest_main.dir/build
 .PHONY : gtest_main/fast
 
-test_move.obj: test_move.cpp.obj
-.PHONY : test_move.obj
+main.obj: main.cpp.obj
+.PHONY : main.obj
 
 # target to build an object file
-test_move.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\starship.dir\build.make CMakeFiles/starship.dir/test_move.cpp.obj
-.PHONY : test_move.cpp.obj
+main.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\starship.dir\build.make CMakeFiles/starship.dir/main.cpp.obj
+.PHONY : main.cpp.obj
 
-test_move.i: test_move.cpp.i
-.PHONY : test_move.i
+main.i: main.cpp.i
+.PHONY : main.i
 
 # target to preprocess a source file
-test_move.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\starship.dir\build.make CMakeFiles/starship.dir/test_move.cpp.i
-.PHONY : test_move.cpp.i
+main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\starship.dir\build.make CMakeFiles/starship.dir/main.cpp.i
+.PHONY : main.cpp.i
 
-test_move.s: test_move.cpp.s
-.PHONY : test_move.s
+main.s: main.cpp.s
+.PHONY : main.s
 
 # target to generate assembly for a file
-test_move.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\starship.dir\build.make CMakeFiles/starship.dir/test_move.cpp.s
-.PHONY : test_move.cpp.s
+main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\starship.dir\build.make CMakeFiles/starship.dir/main.cpp.s
+.PHONY : main.cpp.s
 
 # Help Target
 help:
@@ -277,9 +277,9 @@ help:
 	@echo ... gtest
 	@echo ... gtest_main
 	@echo ... starship
-	@echo ... test_move.obj
-	@echo ... test_move.i
-	@echo ... test_move.s
+	@echo ... main.obj
+	@echo ... main.i
+	@echo ... main.s
 .PHONY : help
 
 

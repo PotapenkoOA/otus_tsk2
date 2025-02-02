@@ -1,45 +1,55 @@
 #ifndef __MOVE
 #define __MOVE
 
-#include <gtest/gtest.h>
-#include <gmock/gmock.h>
+#include "movingobject.h"
 
 #include <vector>
+#include <iostream>
 using namespace std;
 
-class IMove{
+class Vector{
+    int x;
+    int y;
     public:
-        virtual vector<double> getVelocity() = 0;
-        virtual vector<double> getLocation() = 0;
-        virtual void setLocation( vector<double> newValue ) = 0;
+    Vector(int x, int y){ this->x = x; this->y = y; }
 
-        virtual void Execute() = 0;
+    static Vector Plus( Vector a, Vector b )
+    {
+        return Vector( a.x + b.x, a.y + b.y );
+    }
+
 };
 
-class MockMove:public IMove{
-    public:
-    MOCK_METHOD(vector<double>, getVelocity, (), (override));
-    MOCK_METHOD(vector<double>, getLocation, (), (override));
-    MOCK_METHOD(void, setLocation, (vector<double> newValue), (override));
-
-    MOCK_METHOD(void,  Execute , (), (override));
-};
-
-
-class Move: public IMove {
-
-    vector<double> m_Location;
-    vector<double> m_Velocity;
-    
-    public: 
-        Move();
-
-        vector<double> getLocation() ;
-        vector<double> getVelocity() ;
+vector<int>  Plus(vector<int> a, vector<int> b)
+{
+   //проверка на двумерность
+   vector<int> result {0,0};
    
-        void setLocation( vector<double> newValue ) ;
-    
-        void Execute();
+   int max_size = 2;
+   for( int i = 0; i <  max_size; i++ )
+   {
+      result[i] = a[i] + b [i];
+   }
+
+   return result;
+}
+
+class Move {
+
+    IMovingObject *pObject;
+
+    public: 
+        Move(IMovingObject *obj)
+        {
+            pObject = obj;
+        }
+
+        void Execute()
+        {
+            pObject->setLocation( Plus(pObject->getLocation(), pObject->getVelocity())) ;
+
+        }
 };
+
 
 #endif
