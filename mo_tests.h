@@ -16,10 +16,10 @@ TEST(MovingSpacecshipTest, test1)
     MovingMock sokol; 
     Move move(&sokol);  
 
-    EXPECT_CALL(sokol, getLocation()).WillOnce(Return(vector<int>{12,5}));
-    EXPECT_CALL(sokol, getVelocity()).WillOnce(Return(vector<int>{-7,3}));
+    EXPECT_CALL(sokol, getLocation()).WillOnce(Return(Vector2(12,5)));
+    EXPECT_CALL(sokol, getVelocity()).WillOnce(Return(Vector2(-7,3)));
 
-    EXPECT_CALL(sokol, setLocation(vector<int>{5,8})).WillOnce(Return());
+    EXPECT_CALL(sokol, setLocation(Vector2(5,8))).WillOnce(Return());
           
     move.Execute();
 }
@@ -30,7 +30,7 @@ TEST(MovingSpacecshipTest, undefined_location)
     Move move(&sokol);  
 
     ON_CALL(sokol, getLocation()).WillByDefault(Throw(std::exception()));
-    ON_CALL(sokol, getVelocity()).WillByDefault(Return(vector<int>{-7,3}));
+    ON_CALL(sokol, getVelocity()).WillByDefault(Return(Vector2{-7,3}));
 
     EXPECT_CALL(sokol, getLocation()).Times(::testing::AnyNumber());
     EXPECT_CALL(sokol, getVelocity()).Times(::testing::AnyNumber());
@@ -43,7 +43,7 @@ TEST(MovingSpacecshipTest, undefined_velocity)
     MovingMock sokol; 
     Move move(&sokol);  
 
-    ON_CALL(sokol, getLocation()).WillByDefault(Return(vector<int>{-7,3}));
+    ON_CALL(sokol, getLocation()).WillByDefault(Return(Vector2{-7,3}));
     ON_CALL(sokol, getVelocity()).WillByDefault(Throw(std::exception()));
 
     EXPECT_CALL(sokol, getLocation()).Times(::testing::AnyNumber());
@@ -57,13 +57,13 @@ TEST(MovingSpacecshipTest, undefined_move)
     MovingMock sokol; 
     Move move(&sokol);  
 
-    ON_CALL(sokol, getLocation()).WillByDefault(Return(vector<int>{12,5}));
-    ON_CALL(sokol, getVelocity()).WillByDefault(Return(vector<int>{-7,3}));
+    ON_CALL(sokol, getLocation()).WillByDefault(Return(Vector2{12,5}));
+    ON_CALL(sokol, getVelocity()).WillByDefault(Return(Vector2{-7,3}));
 
     EXPECT_CALL(sokol, getLocation()).Times(::testing::AnyNumber());
     EXPECT_CALL(sokol, getVelocity()).Times(::testing::AnyNumber());
 
-    EXPECT_CALL(sokol, setLocation(::testing::A<vector<int>>())).WillOnce(Throw(std::exception()));
+    EXPECT_CALL(sokol, setLocation(::testing::A<Vector2>())).WillOnce(Throw(std::exception()));
          
     EXPECT_ANY_THROW(move.Execute()); 
 }

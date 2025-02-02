@@ -17,7 +17,7 @@ TEST(RotatingSpacecshipTest, test_1)
     RotatingMock bundle; 
     Rotate rotate(&bundle);  
 
-    EXPECT_CALL(bundle, getAngle()).WillOnce(Return(Angle(2,5)));
+    EXPECT_CALL(bundle,           getAngle()).WillOnce(Return(Angle(2,5)));
     EXPECT_CALL(bundle, getAngularVelocity()).WillOnce(Return(Angle(3,5)));
 
     EXPECT_CALL(bundle, setAngle(Angle(0,5)));

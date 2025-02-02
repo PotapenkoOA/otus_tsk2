@@ -1,10 +1,11 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-#include "rotatingobject.h"
-
 using ::testing::Return;
 using ::testing::Throw;
+
+
+#include "angle.h"
 
 TEST(AngleClassTest, test1)
 {

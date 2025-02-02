@@ -7,13 +7,15 @@
 #include <vector>
 using namespace std;
 
+#include "vector2.h"
+
 class IMovingObject{
     public:
        
-      virtual vector<int> getLocation() = 0;
-      virtual vector<int> getVelocity() = 0;
+      virtual Vector2 getLocation() = 0;
+      virtual Vector2 getVelocity() = 0;
    
-      virtual void setLocation( vector<int> newValue ) = 0;
+      virtual void setLocation( Vector2 newValue ) = 0;
 
       virtual ~IMovingObject(){;}
 };
@@ -22,9 +24,9 @@ class MovingMock:public IMovingObject
 {
     public:
     
-    MOCK_METHOD(vector<int>, getVelocity, (), (override));
-    MOCK_METHOD(vector<int>, getLocation, (), (override));
-    MOCK_METHOD(void, setLocation, (vector<int> newValue) , (override));
+    MOCK_METHOD(Vector2, getVelocity, (), (override));
+    MOCK_METHOD(Vector2, getLocation, (), (override));
+    MOCK_METHOD(void, setLocation, (Vector2 newValue) , (override));
 };
 
 #endif

@@ -1,10 +1,11 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-
+//#include "angle_test.h"
+//#include "vector_test.h"
 #include "mo_tests.h"
 #include "ro_tests.h"
-//#include "angle_test.h"
+
 
 int main(int argc, char* argv[])
 {
