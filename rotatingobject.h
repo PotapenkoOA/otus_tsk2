@@ -46,15 +46,15 @@ class Angle{
         return *this;
     }
 
-    bool operator ==( const Angle& b){  return (n == b.n) && (d == b.d); }
+    friend bool operator ==( const Angle& b, const Angle& c){  return (c.n == b.n) && (c.d == b.d); }
 
-    bool operator !=( const Angle& b){  return (n == b.n) && (d != b.d); }
+    friend bool operator !=( const Angle& b, const Angle& c){  return (c.n == b.n) && (c.d != b.d); }
 
-    bool operator >=( const Angle& b){  return (n == b.n) && (d >= b.d); }
-    bool operator <=( const Angle& b){  return (n == b.n) && (d <= b.d); }
+    friend bool operator >=( const Angle& b, const Angle& c){  return (c.n >= b.n) && (c.d >= b.d); }
+    friend bool operator <=( const Angle& b, const Angle& c){  return (c.n <= b.n) && (c.d <= b.d); }
 
-    bool operator > ( const Angle& b){  return (n == b.n) && (d > b.d); }
-    bool operator < ( const Angle& b){  return (n == b.n) && (d < b.d); }
+  //  friend bool operator > ( const Angle& b){  return (n == b.n) && (d > b.d); }
+  //  friend bool operator < ( const Angle& b){  return (n == b.n) && (d < b.d); }
 }; 
 
 
