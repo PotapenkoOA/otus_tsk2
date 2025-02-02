@@ -3,7 +3,7 @@
 
 
 #include "mo_tests.h"
-//#include "ro_tests.h"
+#include "ro_tests.h"
 //#include "angle_test.h"
 
 int main(int argc, char* argv[])
