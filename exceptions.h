@@ -9,6 +9,8 @@ class IException: public exception {
     public:
 
     virtual void Handle() = 0;
+
+    virtual ~IException() {;}
     
 };
 

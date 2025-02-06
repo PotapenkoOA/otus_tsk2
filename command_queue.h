@@ -55,6 +55,7 @@ class CommandQueue
       }
 
       m_cmd_list.pop_front();
+      //delete pCmd;
   }
 
   string GetLastCmdType()

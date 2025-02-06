@@ -14,45 +14,72 @@ using ::testing::InSequence;
 TEST(CommandTest, test0)
 {
     // проверить команду вызывающую исключение
-    ICommand *command = new GetExceptionCommand();
+    GetExceptionCommand command;
 
-    EXPECT_ANY_THROW(command->Execute());
+    EXPECT_ANY_THROW(command.Execute());
 }
 
 TEST(CommandTest, test1)
 {
     // Реализовать Команду, которая записывает информацию о выброшенном исключении в лог.
-    ICommand *command = new WriteToLogCommand(new GetExceptionCommand, new OrdinaryException(), "test play");
+    GetExceptionCommand cmd;
+    OrdinaryException exc;
 
-    EXPECT_NO_THROW(command->Execute());
+    WriteToLogCommand command(&cmd, &exc, "test play");
+
+    EXPECT_NO_THROW(command.Execute());
 }
 
 TEST(CommandTest, test2)
 {
    //Реализовать Команду, которая повторяет Команду, выбросившую исключение.
-    ICommand *command = new DoublerCommand(new GetExceptionCommand());
-   
-    EXPECT_ANY_THROW(command->Execute());
+    GetExceptionCommand cmd;
+    OrdinaryException exc;
 
-    command = new DoublerCommand(new WriteToLogCommand(new GetExceptionCommand, new OrdinaryException(), "test play"));
+    DoublerCommand command( &cmd, &exc );
 
-    EXPECT_NO_THROW(command->Execute());
+    EXPECT_ANY_THROW(command.Execute());
+
+    
+    DoublerCommand command2(new WriteToLogCommand(&cmd, &exc, "test play"), &exc);
+    EXPECT_NO_THROW(command2.Execute());
 }
 
 TEST(CommandTest, test3)
 {
-    //создать новую команду, точно такую же как в пункте 6. Тип этой команды будет показывать, что Команду не удалось выполнить два раза.    
-   ICommand *command = new TriplerCommand(new GetExceptionCommand(), new OrdinaryException() );
+    //создать новую команду, точно такую же как в пункте 6. Тип этой команды будет показывать, что Команду не удалось выполнить два раза.   
+    GetExceptionCommand cmd;
+    OrdinaryException exc;
 
-   EXPECT_ANY_THROW(command->Execute());
+    TriplerCommand command( &cmd, &exc );
 
-   delete command;
+    EXPECT_ANY_THROW(command.Execute());
+   
+    TriplerCommand command2(new WriteToLogCommand(&cmd, &exc, "test play"), &exc);
+    EXPECT_NO_THROW(command2.Execute());
+}
 
-   command = new TriplerCommand(new WriteToLogCommand(new GetExceptionCommand, new OrdinaryException(), "test play"), new OrdinaryException());
 
-   EXPECT_NO_THROW(command->Execute());
+TEST(CommandTest, getTypeFunctionTest)
+{
+    //проверить функции возврата типа значения по указателю на базовый тип   
+    GetExceptionCommand cmd;
+    OrdinaryException exc;
+    DoublerCommand dcmd( &cmd, &exc );
+    TriplerCommand tcmd( &cmd, &exc );
+    WriteToLogCommand wcmd( &cmd, &exc );
 
-   // command->Execute();
+    ICommand* pCmd = &cmd;
+    ASSERT_STREQ(getType(pCmd).c_str(), "GetExceptionCommand");
+
+    pCmd = &dcmd;
+    ASSERT_STREQ(getType(pCmd).c_str(), "DoublerCommand");
+    pCmd = &tcmd;
+    ASSERT_STREQ(getType(pCmd).c_str(), "TriplerCommand");
+    pCmd = &wcmd;
+    ASSERT_STREQ(getType(pCmd).c_str(), "WriteToLogCommand");
+
+    ASSERT_STREQ(getType(&exc).c_str(), "OrdinaryException");
 }
 
 

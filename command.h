@@ -12,6 +12,7 @@ using namespace std;
 class ICommand{
     public:
     virtual void Execute() = 0;
+    virtual ~ICommand() {;}
 };
 
 string getType(ICommand *c)
@@ -52,7 +53,13 @@ class WriteToLogCommand: public ICommand {
     string IExceptionType;
     string msg;
     public:
-    WriteToLogCommand(ICommand *c, IException *e, string msg = "")
+
+    WriteToLogCommand()
+    {
+
+        ICommandType  =  IExceptionType  = msg = "";
+    }
+    WriteToLogCommand(ICommand *c , IException *e , string msg = "")
     {
 
         ICommandType  =  getType(c);
@@ -61,20 +68,25 @@ class WriteToLogCommand: public ICommand {
     }
     void Execute()
     {
+        if( !IExceptionType.empty() )
         cout<<"Log: Detect an exception ("<<IExceptionType<<") during executing a command("<<ICommandType<<")  "<<msg<<endl;
     }
 };
 
 class DoublerCommand: public ICommand {
     ICommand *exceptedCmd;
+    IException *lastException;
     public:
     DoublerCommand()
     {
         exceptedCmd = NULL;
     }
-    DoublerCommand(ICommand *c)
+    DoublerCommand(ICommand *c,  IException *e)
     {
-        exceptedCmd  =  c;   
+
+        exceptedCmd  =  c;
+        lastException = e;
+        
     }
     void Execute()
     {
