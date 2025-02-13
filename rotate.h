@@ -6,7 +6,7 @@ using namespace std;
 
 #include "rotatingobject.h"
 
-class Rotate{
+class Rotate: public ICommand {
 
     IRotatingObject *obj;
     public:

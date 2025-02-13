@@ -15,6 +15,8 @@ class ICommand{
     virtual ~ICommand() {;}
 };
 
+
+
 string getType(ICommand *c)
 {
     int status;  

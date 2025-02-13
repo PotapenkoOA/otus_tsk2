@@ -1,7 +1,10 @@
 #ifndef __VECTOR
 #define __VECTOR
 
+#include <cmath>
 using namespace std;
+
+#include "angle.h"
 
 class Vector2{
 
@@ -19,6 +22,12 @@ class Vector2{
     Vector2 operator +( const Vector2& v )
     {        
         return Vector2(  this->x + v.x, this->y + v.y );
+    }
+
+    Vector2 rotate(  Angle& v )
+    {        
+        return Vector2(  x*cos(v.getRadAngle()) +  y*sin(v.getRadAngle()),  
+         x*sin(v.getRadAngle()) + y*cos(v.getRadAngle()));
     }
 
     Vector2& operator = (const Vector2& C) {

@@ -2,12 +2,14 @@
 #include <gmock/gmock.h>
 
 //#include "angle_test.h"
-//#include "vector_test.h"
-#include "command_test.h"
-#include "exception_library_test.h"
+#include "vector_test.h"
+//#include "command_test.h"
+//#include "exception_library_test.h"
 //#include "mo_tests.h"
 //#include "ro_tests.h"
 //#include "command.h"
+
+#include "task4_test.h"
 
 int main(int argc, char* argv[])
 {
