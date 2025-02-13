@@ -2,12 +2,13 @@
 #define __MOVE
 
 #include "movingobject.h"
+#include "command.h"
 
 #include <iostream>
 using namespace std;
 
 
-class Move {
+class Move: public ICommand {
 
     IMovingObject *pObject;
 

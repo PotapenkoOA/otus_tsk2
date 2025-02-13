@@ -1,6 +1,8 @@
 #ifndef __ANGLE
 #define __ANGLE
 
+//# define M_PI           3.14159265358979323846  /* pi */
+
 // хранение угла в целых числах
 /// n - число частей, на которые делится круг
 /// d - число задействованных частей круга
@@ -11,6 +13,12 @@ class Angle{
     char d;
 
     public:
+
+    float getRadAngle()
+    {
+        return 2*M_PI*d/(float)n;
+    }
+
     Angle( )
     {
         this->d = 0;

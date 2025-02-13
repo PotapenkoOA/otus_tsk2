@@ -37,6 +37,10 @@ string m_description;
     
 };
 
+class CommandException: public OrdinaryException{
+
+};
+
 
 
 #endif

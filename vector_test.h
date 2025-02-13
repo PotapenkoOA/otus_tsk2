@@ -25,3 +25,13 @@ TEST(VectorClassTest, test2)
     
     ASSERT_EQ( a + b, Vector2(24, 46) );
 }
+
+#include "angle.h"
+//Vector2 v= pObject->get()*m_a;
+TEST(VectorClassTest, test3)
+{
+    Vector2 a(12,23); 
+    Angle b(1,2); 
+    
+    ASSERT_EQ( a.rotate( b ), Vector2(-12, -23) );
+}
