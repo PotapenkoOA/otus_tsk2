@@ -17,8 +17,6 @@ using namespace std;
 /// проверить удачный случай регистрации 
 TEST(IoCRegisterTest, test0)
 {
-    IoC::Init();
-
     IResolverContainer* presolver = new ResolverContainer<function<void(string)>>(
         function<void(string)>( 
             [](string printValue)
@@ -39,9 +37,6 @@ TEST(IoCRegisterTest, test0)
 /// проверить исключения при регистрации не того типа
 TEST(IoCRegisterTest, test1)
 {
-    IoC::Init();
-
-   
     function<void(string)> test_func = function<void(string)>( 
             [](string printValue)
             {
@@ -59,8 +54,6 @@ TEST(IoCRegisterTest, test1)
 /// проверить разрешение зависимостей с неправильным запросом
 TEST(IoCRegisterTest, test2)
 {
-    IoC::Init();
-
     IResolverContainer* presolver = new ResolverContainer<function<void(string)>>(
         function<void(string)>( 
             [](string printValue)
