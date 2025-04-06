@@ -5,7 +5,7 @@
 #include <gmock/gmock.h>
 
 #include "IoCcontainer.h"
-#include "Command.h"
+#include "command.h"
 
 using ::testing::Return;
 using ::testing::Throw;
