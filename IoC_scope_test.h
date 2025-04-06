@@ -4,8 +4,8 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-#include "../IoCcontainer.h"
-#include "../Command.h"
+#include "IoCcontainer.h"
+#include "Command.h"
 
 using ::testing::Return;
 using ::testing::Throw;

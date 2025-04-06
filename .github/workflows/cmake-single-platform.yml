@@ -1,6 +1,6 @@
 # This starter workflow is for a CMake project running on a single platform. There is a different starter workflow if you need cross-platform coverage.
 # See: https://github.com/actions/starter-workflows/blob/main/ci/cmake-multi-platform.yml
-name: Command pattern
+name: IoC
 
 on:
     push:
@@ -23,7 +23,7 @@ jobs:
               run: mkdir build; cd build; cmake ..; 
 
             - name: build tests
-              run: cd build; make; ls;
+              run: cd build; make; 
 
             - name: run tests
               run: cd build; ./starship;
