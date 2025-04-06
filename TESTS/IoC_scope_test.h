@@ -4,8 +4,13 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
+<<<<<<< HEAD:TESTS/IoC_scope_test.h
 #include "../IoCcontainer.h"
 #include "../command.h"
+=======
+#include "IoCcontainer.h"
+#include "command.h"
+>>>>>>> befe291f8ee9596abd9bdc96875a41b33c06eb88:IoC_scope_test.h
 
 using ::testing::Return;
 using ::testing::Throw;
@@ -107,5 +112,6 @@ TEST(IoCScopeTest, register_dependency3)
 
     IoC::Resolve<void>( "IoC.Scope.Current.Clear" );
 }
+
 
 #endif
