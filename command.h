@@ -15,8 +15,6 @@ class ICommand{
     virtual ~ICommand() {;}
 };
 
-
-
 string getType(ICommand *c)
 {
     int status;  
@@ -33,6 +31,13 @@ string getType(IException *e)
     return (status == 0) ? demangled : typeInfo.name();
 }
 
+string getType(IResolverContainer *c)
+{
+    int status;  
+    const type_info& typeInfo = typeid(*c);
+    char* demangled = abi::__cxa_demangle(typeInfo.name(), nullptr, nullptr, &status);
+    return (status == 0) ? demangled : typeInfo.name();
+}
 
 class GetExceptionCommand: public ICommand{
     public:
