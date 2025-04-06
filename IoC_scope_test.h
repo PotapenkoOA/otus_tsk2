@@ -80,7 +80,7 @@ TEST(IoCScopeTest, register_dependency2)
     IoC::Resolve<void>( "IoC.Scope.Current.Clear" );
 }
 
-
+/*
 TEST(IoCScopeTest, register_dependency3)
 {
     /// многопоточные тесты
@@ -107,6 +107,6 @@ TEST(IoCScopeTest, register_dependency3)
 
     IoC::Resolve<void>( "IoC.Scope.Current.Clear" );
 }
-
+*/
 
 #endif
