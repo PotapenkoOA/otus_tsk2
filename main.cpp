@@ -11,7 +11,7 @@
 
 //#include "task4_test.h"
 
-#include "IoC_scope_test.h"
+#include "TESTS/IoC_scope_test.h"
 
 int main(int argc, char* argv[])
 {

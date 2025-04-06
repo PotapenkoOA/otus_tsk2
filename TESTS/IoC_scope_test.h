@@ -4,8 +4,8 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-#include "IoCcontainer.h"
-#include "Command.h"
+#include "../IoCcontainer.h"
+#include "../command.h"
 
 using ::testing::Return;
 using ::testing::Throw;
@@ -16,7 +16,7 @@ using ::testing::InSequence;
 #include <thread>
 using namespace std;
 
-/*
+
 TEST(IoCScopeTest, set_scope)
 {
     map<string, IResolverContainer*> *scope1= IoC::Resolve< map<string, IResolverContainer*>*,map<string, IResolverContainer*>*>( "IoC.Scope.New", nullptr );
@@ -107,6 +107,5 @@ TEST(IoCScopeTest, register_dependency3)
 
     IoC::Resolve<void>( "IoC.Scope.Current.Clear" );
 }
-*/
 
 #endif
