@@ -18,6 +18,12 @@ jobs:
 
             - name: checkout
               uses: actions/checkout@v4
+
+            - name: parser configure
+              run: mkdir parser/build; cd parser/build; cmake ..; 
+            
+            - name: parser run
+              run: cd build; ./parser;
             
             - name: configure
               run: mkdir build; cd build; cmake ..; 
