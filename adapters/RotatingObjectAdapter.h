@@ -2,7 +2,7 @@
 #define ROTATINGOBJECT_ADAPTER
 
 #include "../IoCcontainer.h"
-#include "..interfaces_obj/RotatingObject.h"
+#include "../interfaces_obj/rotatingobject.h"
 
  class RotatingObjectAdapter: public IRotatingObject {
 

@@ -2,7 +2,7 @@
 #define MOVINGOBJECT_ADAPTER
 
 #include "../IoCcontainer.h"
-#include "../interfaces_obj/MovingObject.h"
+#include "../interfaces_obj/movingobject.h"
 
  class MovingObjectAdapter: public IMovingObject {
 
