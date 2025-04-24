@@ -20,7 +20,7 @@ jobs:
               uses: actions/checkout@v4
 
             - name: parser configure
-              run: mkdir parser/build; cd parser/build; cmake ..; 
+              run: mkdir adapters; mkdir parser/build; cd parser/build; cmake ..; 
             
             - name: parser run
               run: cd parser/build; make; ./parser; ls ../../;
