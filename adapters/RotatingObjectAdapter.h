@@ -1,8 +1,8 @@
 #ifndef ROTATINGOBJECT_ADAPTER
 #define ROTATINGOBJECT_ADAPTER
 
-#include "..\IoCcontainer.h"
-#include "..\interfaces_obj\RotatingObject.h"
+#include "../IoCcontainer.h"
+#include "..interfaces_obj/RotatingObject.h"
 
  class RotatingObjectAdapter: public IRotatingObject {
 

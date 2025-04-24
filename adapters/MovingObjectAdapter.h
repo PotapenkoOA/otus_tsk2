@@ -1,8 +1,8 @@
 #ifndef MOVINGOBJECT_ADAPTER
 #define MOVINGOBJECT_ADAPTER
 
-#include "..\IoCcontainer.h"
-#include "..\interfaces_obj\MovingObject.h"
+#include "../IoCcontainer.h"
+#include "../interfaces_obj/MovingObject.h"
 
  class MovingObjectAdapter: public IMovingObject {
 
