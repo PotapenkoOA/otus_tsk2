@@ -1,4 +1,4 @@
 /build
 /build/*
 /parser/build
-/adapters
+/adapters/*
