@@ -34,3 +34,6 @@ jobs:
             - name: run tests
               run: cd build; ./starship;
 
+            - name: delete adapters
+              run: rmdir adapters; 
+
