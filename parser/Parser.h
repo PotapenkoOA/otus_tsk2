@@ -154,7 +154,7 @@ bool CreateAdapters( map<string, map<string,funcDescription*>*>* pMapInterfaces,
         content += "{\n\t\tIoC::Resolve<ICommand*, string, IResolverContainer*>(\"IoC.Register\",\"Adapter.I"+pair.first+"\", new ResolverContainer<function<"+pair.first+"Adapter*(IResolverContainer*)>>";
         content += " (\n\t\t\tfunction<"+pair.first+"Adapter*(IResolverContainer*)>([&](IResolverContainer* obj){\n\t\t\t\treturn new "+pair.first+"Adapter(obj);\n\t\t\t})\n\t\t) )->Execute();\n\t}\n};\n";
         content += "\n#endif\n";
-        CreateAdapterFile(outPath+"\\"+pair.first+"Adapter", content);
+        CreateAdapterFile(outPath+"/"+pair.first+"Adapter", content);
     }
 
     return true;
