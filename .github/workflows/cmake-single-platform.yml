@@ -26,7 +26,7 @@ jobs:
               run: cd build; ./parser;
             
             - name: configure
-              run: mkdir ../../build; cd build; cmake ..; 
+              run: mkdir build; cd build; cmake ..; 
 
             - name: build tests
               run: cd build; make; 
