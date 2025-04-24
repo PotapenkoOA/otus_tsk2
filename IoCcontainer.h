@@ -12,6 +12,7 @@ class IoC
     static IDependencyResolver* resolver;
 
 public: 
+
  
     template<typename T, typename ...Args >
     static T Resolve( string dependency, Args... args )
@@ -19,7 +20,7 @@ public:
         ResolverContainer<function<T(Args...)>>* pContainer = 
                         dynamic_cast<ResolverContainer<function<T(Args...)>>*>(IoC::resolver->Resolve(dependency));
         
-      // cout<<"Resolve:"<< getType(IoC::resolver->Resolve(dependency))<<endl<<endl;  
+       // cout<<"Resolve:"<<dependency<<" "<< getType(IoC::resolver->Resolve(dependency))<<" pContainer "<<pContainer<<endl<<endl;  
         if(pContainer)
             return  pContainer->get()(args...);
         else throw std::bad_cast();  

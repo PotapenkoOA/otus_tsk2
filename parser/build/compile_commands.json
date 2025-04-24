@@ -1,0 +1,8 @@
+[
+{
+  "directory": "C:/Projects/otus_3tsk/parser/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++17 -o CMakeFiles\\parser.dir\\main.cpp.obj -c C:\\Projects\\otus_3tsk\\parser\\main.cpp",
+  "file": "C:/Projects/otus_3tsk/parser/main.cpp",
+  "output": "CMakeFiles/parser.dir/main.cpp.obj"
+}
+]
