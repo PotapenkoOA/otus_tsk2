@@ -35,5 +35,5 @@ jobs:
               run: cd build; ./starship;
 
             - name: delete adapters
-              run: rmdir -r adapters; 
+              run: rm -r adapters; 
 
