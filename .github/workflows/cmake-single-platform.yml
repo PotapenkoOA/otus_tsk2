@@ -23,7 +23,7 @@ jobs:
               run: mkdir parser/build; cd parser/build; cmake ..; 
             
             - name: parser run
-              run: cd parser/build;  make; cd parser/build; ./parser;
+              run: cd parser/build; ./parser;
             
             - name: configure
               run: mkdir ../../build; cd build; cmake ..; 
