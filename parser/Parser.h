@@ -47,6 +47,7 @@ inline void ParseClassIn( string class_in, map<string,funcDescription*>* _funcs 
     while (regex_search( searchStart2, class_in.cend(), _match, propertyPattern )) {
 
         string funcName = (string)_match[2];
+       // cout<<funcName<<endl;
         (*_funcs)[funcName] = new funcDescription{(string)_match[1], new list<string>(), new list<string>() };
         (*_funcs)[funcName]->argumentDescription->push_back(_match[4]);
         (*_funcs)[funcName]->argumentType->push_back(_match[3]);

@@ -13,6 +13,8 @@ public:
 virtual Angle getAngle() = 0;
 virtual Angle getAngularVelocity() = 0;
 virtual void setAngle(Angle a) = 0;
+
+virtual void finish() = 0;
 };
 
 class RotatingMock : public IRotatingObject {

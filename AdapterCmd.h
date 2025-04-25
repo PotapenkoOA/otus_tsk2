@@ -53,4 +53,52 @@ class AdapterRegister:ICommand
     }
 };
 
+ //  IoC::Resolve<ICommand*, string, IResolverContainer*>("IoC.Register","Location", 
+  //                          new ResolverContainer<function<Vector2()>> ( function<Vector2()>([&](){ return Vector2(1,1); }) ) )->Execute(); 
+  //  IoC::Resolve<ICommand*, string, IResolverContainer*>("IoC.Register","Velocity", 
+  //                              new ResolverContainer<function<Vector2()>> ( function<Vector2()>([&](){ return Vector2(1,1); }) ) )->Execute(); 
+   //IoC::Resolve<Vector2,IResolverContainer* >("MovingObject.Location.get", m_pObj);
+ /*   IoC::Resolve<ICommand*, string, IResolverContainer*>("IoC.Register","MovingObject.Location.get", 
+        new ResolverContainer<function<Vector2(IResolverContainer*)>> 
+            ( function<Vector2(IResolverContainer*)>
+            ([&](IResolverContainer* pObj)
+            { 
+                ResolverContainer<map<string, IResolverContainer*>*>* pContainer = dynamic_cast<ResolverContainer<map<string, IResolverContainer*>*>*>(pObj);
+                map<string, IResolverContainer*> *pMapObj = pContainer->get();
+                if ( pMapObj == nullptr )
+                    throw bad_cast();
+                IoC::Resolve<void, map<string, IResolverContainer*>*>( "IoC.Scope.Current.Set", pMapObj );
+                return IoC::Resolve<Vector2>("Location"); 
+            }) 
+        ) )->Execute(); 
+
+    IoC::Resolve<ICommand*, string, IResolverContainer*>("IoC.Register","MovingObject.Velocity.get", 
+        new ResolverContainer<function<Vector2(IResolverContainer*)>> 
+            ( function<Vector2(IResolverContainer*)>
+            ([&](IResolverContainer* pObj)
+                { 
+                    ResolverContainer<map<string, IResolverContainer*>*>* pContainer = dynamic_cast<ResolverContainer<map<string, IResolverContainer*>*>*>(pObj);
+                    map<string, IResolverContainer*> *pMapObj = pContainer->get();
+                    if ( pMapObj == nullptr )
+                        throw bad_cast();
+                    IoC::Resolve<void, map<string, IResolverContainer*>*>( "IoC.Scope.Current.Set", pMapObj );
+                    return IoC::Resolve<Vector2>("Velocity"); 
+                }) 
+            ) )->Execute();
+
+    IoC::Resolve<ICommand*, string, IResolverContainer*>("IoC.Register","MovingObject.Location.set", 
+                new ResolverContainer<function<void(IResolverContainer*, Vector2)>> 
+                    ( function<void(IResolverContainer*,Vector2)>
+                    ([&](IResolverContainer* pObj, Vector2 newValue)
+                        { 
+                            ResolverContainer<map<string, IResolverContainer*>*>* pContainer = dynamic_cast<ResolverContainer<map<string, IResolverContainer*>*>*>(pObj);
+                            map<string, IResolverContainer*> *pMapObj = pContainer->get();
+                            if ( pMapObj == nullptr )
+                                throw bad_cast();
+                            IoC::Resolve<void, map<string, IResolverContainer*>*>( "IoC.Scope.Current.Set", pMapObj );
+                            IoC::Resolve<ICommand*, string, IResolverContainer*>("IoC.Register","Location", 
+                                new ResolverContainer<function<Vector2()>> ( function<Vector2()>([&](){ return newValue; }) ) )->Execute(); 
+                        }) 
+                    ) )->Execute();
+                    */
 #endif
