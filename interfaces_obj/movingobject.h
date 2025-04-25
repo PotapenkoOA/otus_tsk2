@@ -7,17 +7,24 @@
 #include <vector>
 using namespace std;
 
-#include "vector2.h"
+#include "../older_task/vector2.h"
+
+class IObject
+{
+    protected:
+    map<string, IResolverContainer*> _dependencies;
+};
+
 
 class IMovingObject{
     public:
        
-      virtual Vector2 getLocation() = 0;
-      virtual Vector2 getVelocity() = 0;
+    virtual Vector2 getLocation() = 0;
+    virtual Vector2 getVelocity() = 0;
    
-      virtual void setLocation( Vector2 newValue ) = 0;
+    virtual void setLocation( Vector2 newValue ) = 0;
 
-      virtual ~IMovingObject(){;}
+    virtual ~IMovingObject(){;}
 };
 
 class MovingMock:public IMovingObject
