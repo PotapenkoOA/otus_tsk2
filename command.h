@@ -34,8 +34,7 @@ string getType(IException *e)
 
 string getType(IResolverContainer *c)
 {
-    int status;  
-
+    int status; 
     const type_info& typeInfo = typeid(*c);
     char* demangled = abi::__cxa_demangle(typeInfo.name(), nullptr, nullptr, &status);
     return (status == 0) ? demangled : typeInfo.name();
