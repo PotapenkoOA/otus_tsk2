@@ -134,7 +134,6 @@ class DependencyResolver: public IDependencyResolver
     IResolverContainer* Resolve( map<string, IResolverContainer*> *dependencies, string dependency )
     {
         map<string, IResolverContainer*> *_dependencies = dependencies;
-       // static int index = 0;
         while( 1 )
         {
             if( _dependencies->count(dependency) != 0 )

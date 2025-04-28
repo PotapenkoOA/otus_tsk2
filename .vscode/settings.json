@@ -96,7 +96,10 @@
         "cinttypes": "cpp",
         "typeinfo": "cpp",
         "variant": "cpp",
-        "object": "cpp"
+        "object": "cpp",
+        "bitset": "cpp",
+        "codecvt": "cpp",
+        "regex": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
     
