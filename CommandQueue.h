@@ -14,12 +14,14 @@ class CmdQueue
 {
     list<ICommand*> m_Queue;
     mutex mtx;
+    condition_variable conditional_var;
+    bool conditional = false;
+
     public:
     CmdQueue()
     {
         list<ICommand*> *pQueue = &m_Queue;
         mutex *pmtx = &mtx;
-        //cout<< "CmdQueue(), current scope:"<<IoC::Resolve<map<string, IResolverContainer*>*>( "IoC.Scope.Current" )<<endl; 
                
         IoC::Resolve<ICommand*, string,  IResolverContainer*>( "IoC.Register", "CommandQueue.Push", new ResolverContainer< function<void(ICommand*)>> (
             function<void(ICommand*)>([pQueue,pmtx](ICommand* cmd){
@@ -41,21 +43,15 @@ class CmdQueue
                 return pCmd;
             })
         ) )->Execute();
-
-       
     }   
 
     void Push(ICommand* cmd)
     {
-        //cout<< " parent scope:"<<IoC::Resolve<map<string, IResolverContainer*>*>( "IoC.Scope.Parent" )<<endl; 
-        /// стратегия положить в очередь
         IoC::Resolve<void, ICommand*>("CommandQueue.Push", cmd);
     }
 
     ICommand *Pull()
     {
-        //cout<< "thread t,parent scope:"<<IoC::Resolve<map<string, IResolverContainer*>*>( "IoC.Scope.Parent" )<<endl; 
-
         return IoC::Resolve<ICommand*>("CommandQueue.Pull");
     }
 };
