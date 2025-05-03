@@ -1,0 +1,8 @@
+[
+{
+  "directory": "C:/Projects/otus_3tsk/EPsrv/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -o CMakeFiles\\EPsrv.dir\\main.cpp.obj -c C:\\Projects\\otus_3tsk\\EPsrv\\main.cpp",
+  "file": "C:/Projects/otus_3tsk/EPsrv/main.cpp",
+  "output": "CMakeFiles/EPsrv.dir/main.cpp.obj"
+}
+]

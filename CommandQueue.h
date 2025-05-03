@@ -14,8 +14,6 @@ class CmdQueue
 {
     list<ICommand*> m_Queue;
     mutex mtx;
-    condition_variable conditional_var;
-    bool conditional = false;
 
     public:
     CmdQueue()
