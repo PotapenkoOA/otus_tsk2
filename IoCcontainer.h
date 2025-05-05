@@ -18,9 +18,9 @@ public:
     static T Resolve( string dependency, Args... args )
     {        
         ResolverContainer<function<T(Args...)>>* pContainer = 
-                        dynamic_cast<ResolverContainer<function<T(Args...)>>*>(IoC::resolver->Resolve(dependency));
+                    dynamic_cast<ResolverContainer<function<T(Args...)>>*>(IoC::resolver->Resolve(dependency));
         
-       // cout<<"Resolve:"<<dependency<<" "<< getType(IoC::resolver->Resolve(dependency))<<" pContainer "<<pContainer<<endl<<endl;  
+        //cout<<"IoC::Resolve:"<<dependency<<" "<< getType(IoC::resolver->Resolve(dependency))<<" pContainer "<<pContainer<<endl<<endl;  
         if(pContainer)
             return  pContainer->get()(args...);
         else throw std::bad_cast();  

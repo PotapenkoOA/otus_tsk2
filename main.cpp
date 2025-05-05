@@ -13,7 +13,7 @@
 
 //#include "TESTS/IoC_scope_test.h"
 //#include "TESTS/IoC_adapter_test.h"
-#include "TESTS/SyncThreadCmd_test.h"
+#include "TESTS/Endpoint_test.h"
 
 int main(int argc, char* argv[])
 {
