@@ -29,4 +29,8 @@ public:
     }
 };
 
+using IResolverContainerPtr = shared_ptr<IResolverContainer>;
+
+using IObjectPtr = shared_ptr<map< string, IResolverContainer*>>;
+
 #endif

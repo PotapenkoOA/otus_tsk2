@@ -9,6 +9,7 @@
 
 using namespace std;
 
+
 class IDependencyResolver
 {
 protected:
@@ -21,19 +22,21 @@ public:
 
 class DependencyResolver: public IDependencyResolver
 {
-    thread_local static map<string, IResolverContainer*>* _pCurrentScope;
+    thread_local static IObjectPtr _pCurrentScope;
 
-    map<string, IResolverContainer*> _rootScope;
+    IObjectPtr _pRootScope;
 
     public:
     DependencyResolver()
     {
         _pCurrentScope = nullptr;
+        _pRootScope = make_shared<map< string, IResolverContainer*>>();
 
         // _dependencies["IoC.Scope.Current.Set"] - получает скоуп и делает его текущим
-        _rootScope["IoC.Scope.Current.Set"] = new ResolverContainer<function< void(map<string, IResolverContainer*>*)>>(
-            function< void(map<string, IResolverContainer*>*)> (
-                [&](map<string, IResolverContainer*>* current)
+        map< string, IResolverContainer*>* pRootScope = _pRootScope.get();
+        (*pRootScope)["IoC.Scope.Current.Set"] = new ResolverContainer<function< void(IObjectPtr)> >(
+            function< void(IObjectPtr)> (
+                [&](IObjectPtr current)
                 {
                     _pCurrentScope = current;
                 }
@@ -41,7 +44,7 @@ class DependencyResolver: public IDependencyResolver
         );
 
         // _dependencies["IoC.Scope.Current.Clear"] - очищает текущий скоуп
-        _rootScope["IoC.Scope.Current.Clear"] = new ResolverContainer<function< void(void)>>(
+        (*pRootScope)["IoC.Scope.Current.Clear"] = new ResolverContainer<function< void(void)>>(
             function< void(void)> (
                 [&](void)
                 {
@@ -51,19 +54,19 @@ class DependencyResolver: public IDependencyResolver
         );
 
         // _dependencies["IoC.Scope.Current"] - возвращает текущий скоуп
-        _rootScope["IoC.Scope.Current"] = new ResolverContainer<function< map<string, IResolverContainer*>*(void)>>(
-            function< map<string, IResolverContainer*>*(void)> (
+        (*pRootScope)["IoC.Scope.Current"] = new ResolverContainer<function< IObjectPtr(void)>>(
+            function< IObjectPtr(void)> (
                 [&](void)
                 {
-                    return  (_pCurrentScope == nullptr) ? &_rootScope : _pCurrentScope;
+                    return  (_pCurrentScope == nullptr) ? _pRootScope : _pCurrentScope;
                 }
             )
         );
 
         
         //  _dependencies["IoC.Scope.Parent"] = exception для рутового скоупа
-        _rootScope["IoC.Scope.Parent"] = new ResolverContainer<function<map<string, IResolverContainer*>*(void)>>(
-            function<map<string, IResolverContainer*>*(void)>([]()
+        (*pRootScope)["IoC.Scope.Parent"] = new ResolverContainer< function< IObjectPtr(void)>>(
+            function< IObjectPtr(void)>([]()
             {
                 throw exception();
                 return nullptr;
@@ -71,27 +74,27 @@ class DependencyResolver: public IDependencyResolver
         );
            
         //  _dependencies["IoC.Scope.Create.Empty"] = создание пустого скоупа
-        _rootScope["IoC.Scope.New.Empty"] = new ResolverContainer<function< map<string, IResolverContainer*>*(void)>>(
-            function< map<string, IResolverContainer*>*(void)> ( []() { return  new map<string, IResolverContainer*>();})
+        (*_pRootScope)["IoC.Scope.New.Empty"] = new ResolverContainer<function< IObjectPtr(void)>>(
+            function< IObjectPtr(void)> ( []() { return  make_shared<map< string, IResolverContainer*>>();})
         );
 
         //  _dependencies["IoC.Scope.Create"] - создание скоупа с перентом, если указан
-        _rootScope["IoC.Scope.New"] = new ResolverContainer<function< map<string, IResolverContainer*>*(map<string, IResolverContainer*>*)>>(
-            function< map<string, IResolverContainer*>*(map<string, IResolverContainer*>*)> (
-                [&](map<string, IResolverContainer*>* parent)
+        (*_pRootScope)["IoC.Scope.New"] = new ResolverContainer<function< IObjectPtr(IObjectPtr)>>(
+            function< IObjectPtr(IObjectPtr)> (
+                [&](IObjectPtr parent)
                 {
-                    map<string, IResolverContainer*> *pCreatingScope = 
-                            ((ResolverContainer<function< map<string, IResolverContainer*>*(void)>>*)_rootScope["IoC.Scope.New.Empty"])->get()();
+                    IObjectPtr pCreatingScope = 
+                            ((ResolverContainer<function< IObjectPtr(void)>>*)(*_pRootScope)["IoC.Scope.New.Empty"])->get()();
                     
                     //map<string, IResolverContainer*>* parent
                     if( parent == nullptr )
                     {
-                        ResolverContainer<function< map<string, IResolverContainer*>*(void)>> *pContainer =
-                        (ResolverContainer<function< map<string, IResolverContainer*>*(void)>> *) _rootScope["IoC.Scope.Current"];
+                        ResolverContainer<function< IObjectPtr(void)>> *pContainer =
+                        (ResolverContainer<function< IObjectPtr(void)>> *) (*_pRootScope)["IoC.Scope.Current"];
             
                         parent = pContainer->get()(); 
-                        (*pCreatingScope)["IoC.Scope.Parent"] = new ResolverContainer<function<map<string, IResolverContainer*>*(void)>>(
-                            function<map<string, IResolverContainer*>*(void)>([parent]()
+                        (*pCreatingScope)["IoC.Scope.Parent"] = new ResolverContainer<function<IObjectPtr(void)>>(
+                            function<IObjectPtr(void)>([parent]()
                             {      
                                 return parent;
                             })
@@ -99,8 +102,8 @@ class DependencyResolver: public IDependencyResolver
                     }
                     else
                     {
-                        (*pCreatingScope)["IoC.Scope.Parent"] = new ResolverContainer<function<map<string, IResolverContainer*>*(void)>>(
-                            function<map<string, IResolverContainer*>*(void)>([parent]()
+                        (*pCreatingScope)["IoC.Scope.Parent"] = new ResolverContainer<function<IObjectPtr(void)>>(
+                            function<IObjectPtr(void)>([parent]()
                             { 
                                 return parent;
                             })
@@ -112,13 +115,12 @@ class DependencyResolver: public IDependencyResolver
         );
 
         // инициализация базовых потребностей
-        _rootScope["IoC.Register"] =  new ResolverContainer<function<ICommand*(string, IResolverContainer*)>>( 
-            function<ICommand*(string, IResolverContainer*)>(
+        (*_pRootScope)["IoC.Register"] =  new ResolverContainer<function<ICommandPtr(string, IResolverContainer*)>>( 
+            function< ICommandPtr ( string, IResolverContainer* )>(
                 [&](string dependency, IResolverContainer* pResolver)
                 {
-                    return new RegisterCommand(
-                        (_pCurrentScope != nullptr)? _pCurrentScope : &_rootScope, dependency, pResolver
-                        );
+                    return make_shared<RegisterCommand> ((_pCurrentScope != nullptr)? _pCurrentScope : _pRootScope, 
+                        dependency, pResolver );
                 }
              )
         );  
@@ -126,14 +128,14 @@ class DependencyResolver: public IDependencyResolver
 
     IResolverContainer* Resolve( string dependency )
     {
-        ResolverContainer<function< map<string, IResolverContainer*>*(void)>> *pContainer =
-            (ResolverContainer<function< map<string, IResolverContainer*>*(void)>> *) _rootScope["IoC.Scope.Current"];
+        ResolverContainer<function< IObjectPtr(void)>> *pContainer =
+            (ResolverContainer<function< IObjectPtr(void)>> *) (*_pRootScope)["IoC.Scope.Current"];
         return Resolve(pContainer->get()(), dependency);
     }
 
-    IResolverContainer* Resolve( map<string, IResolverContainer*> *dependencies, string dependency )
+    IResolverContainer* Resolve( IObjectPtr dependencies, string dependency )
     {
-        map<string, IResolverContainer*> *_dependencies = dependencies;
+        IObjectPtr _dependencies = dependencies;
         while( 1 )
         {
             if( _dependencies->count(dependency) != 0 )
@@ -144,8 +146,8 @@ class DependencyResolver: public IDependencyResolver
             else  
             {
                 /// обратиться к родительскому скоупу
-                ResolverContainer<function<map<string, IResolverContainer*>*(void)>>* pContainer =
-                        (ResolverContainer <function<map<string, IResolverContainer*>*(void)>>*)(*_dependencies)[ "IoC.Scope.Parent" ];
+                ResolverContainer<function<IObjectPtr(void)>>* pContainer =
+                        (ResolverContainer <function<IObjectPtr(void)>>*)(*_dependencies)[ "IoC.Scope.Parent" ];
                 
                 _dependencies = pContainer->get()();
                
@@ -157,6 +159,6 @@ class DependencyResolver: public IDependencyResolver
     }
 };
 
-thread_local map<string, IResolverContainer*>* DependencyResolver::_pCurrentScope = nullptr;
+thread_local IObjectPtr DependencyResolver::_pCurrentScope = nullptr;
 
 #endif

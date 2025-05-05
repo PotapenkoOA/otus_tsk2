@@ -10,12 +10,12 @@ class RegisterCommand: public ICommand
     string _dependency;
     IResolverContainer *_pcontainer;
 
-    map<string, IResolverContainer*> *_currentScope;
+    IObjectPtr _currentScope;
 
 public:
-    RegisterCommand( void* currentScope, string dependency, IResolverContainer* pcontainer )
+    RegisterCommand( IObjectPtr currentScope, string dependency, IResolverContainer* pcontainer )
     {
-        _currentScope = (map<string, IResolverContainer*> *)currentScope;
+        _currentScope = currentScope;
         _dependency = dependency;
         _pcontainer = pcontainer;       
     }

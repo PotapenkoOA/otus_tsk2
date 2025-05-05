@@ -11,10 +11,10 @@ using namespace std;
 
 class StartCmd: public ICommand
 {
-    CmdQueue *m_pQueue;
+    CmdQueuePtr m_pQueue;
     
     public:
-    StartCmd(CmdQueue *pQueue)
+    StartCmd(CmdQueuePtr pQueue)
     {
         m_pQueue =  pQueue;
       
@@ -22,9 +22,9 @@ class StartCmd: public ICommand
     void Execute()
     {        
         thread t(
-            [&](CmdQueue *pQueue)
+            [&](CmdQueuePtr pQueue)
             {
-                ICommand *pCmd = pQueue->Pull();
+                ICommandPtr pCmd = pQueue->Pull();
                 while( pCmd != nullptr )
                 {
                     
@@ -52,7 +52,8 @@ class HardStopCmd: public ICommand
     {;}
     void Execute()
     {
-        IoC::Resolve<ICommand*, string,  IResolverContainer*>( "IoC.Register", "CommandQueue.Pull", new ResolverContainer< function<ICommand*(void)>> (
+        IoC::Resolve<ICommand*, string,  IResolverContainer*>( "IoC.Register", "CommandQueue.Pull", 
+            new ResolverContainer< function<ICommand*(void)>> (
             function<ICommand*(void)>([](){
                 return nullptr;
             })

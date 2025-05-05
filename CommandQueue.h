@@ -12,27 +12,27 @@ using namespace std;
 
 class CmdQueue
 {
-    list<ICommand*> m_Queue;
+    list<ICommandPtr> m_Queue;
     mutex mtx;
 
     public:
     CmdQueue()
     {
-        list<ICommand*> *pQueue = &m_Queue;
+        list<ICommandPtr> *pQueue = &m_Queue;
         mutex *pmtx = &mtx;
-               
-        IoC::Resolve<ICommand*, string,  IResolverContainer*>( "IoC.Register", "CommandQueue.Push", new ResolverContainer< function<void(ICommand*)>> (
-            function<void(ICommand*)>([pQueue,pmtx](ICommand* cmd){
+        
+        IoC::Resolve<ICommandPtr, string,  IResolverContainer*>( "IoC.Register", "CommandQueue.Push", new ResolverContainer< function<void(ICommandPtr)>> (
+            function<void(ICommandPtr)>([pQueue,pmtx](ICommandPtr cmd){
                 pmtx->lock();
                 pQueue->push_back(cmd);
                 pmtx->unlock();
             })
         ) )->Execute();
-
-        IoC::Resolve<ICommand*, string,  IResolverContainer*>( "IoC.Register", "CommandQueue.Pull", new ResolverContainer< function<ICommand*(void)>> (
-            function<ICommand*(void)>([pQueue,pmtx](){
+        
+        IoC::Resolve<ICommandPtr, string,  IResolverContainer*>( "IoC.Register", "CommandQueue.Pull", new ResolverContainer< function<ICommandPtr(void)>> (
+            function<ICommandPtr(void)>([pQueue,pmtx](){
                 pmtx->lock();
-                ICommand* pCmd = nullptr;
+                ICommandPtr pCmd = nullptr;
                 if(pQueue->size() != 0) {
                     pCmd = pQueue->front();
                     pQueue->pop_front();
@@ -41,19 +41,20 @@ class CmdQueue
                 return pCmd;
             })
         ) )->Execute();
+        
     }   
 
-    void Push(ICommand* cmd)
+    void Push(ICommandPtr cmd)
     {
-        IoC::Resolve<void, ICommand*>("CommandQueue.Push", cmd);
+        IoC::Resolve<void, ICommandPtr>("CommandQueue.Push", cmd);
     }
 
-    ICommand *Pull()
+    ICommandPtr Pull()
     {
-        return IoC::Resolve<ICommand*>("CommandQueue.Pull");
+        return IoC::Resolve<ICommandPtr>("CommandQueue.Pull");
     }
 };
 
-
+using CmdQueuePtr = std::shared_ptr<CmdQueue>;
 
 #endif

@@ -15,6 +15,8 @@ class ICommand{
     virtual ~ICommand() {;}
 };
 
+using ICommandPtr = std::shared_ptr<ICommand>;
+
 string getType(ICommand *c)
 {
     int status;  

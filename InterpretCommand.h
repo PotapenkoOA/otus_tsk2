@@ -1,7 +1,10 @@
+#ifndef _INTERPRET_COMMAND_
+#define _INTERPRET_COMMAND_
+
 #include <string>
 #include <map>
 #include <list>
-#include <vector>
+#include <iostream>
 
 using namespace std;
 
@@ -9,31 +12,36 @@ using namespace std;
 
 #include "command.h"
 #include "IoCcontainer.h"
+#include "older_task/vector2.h"
 
 #include "json-develop/single_include/nlohmann/json.hpp"
 
 /// парсинг команды по имени из json
 class InterpretCommand: public ICommand
 {
-    list<ICommand*> m_cmds;
+    list<ICommandPtr> m_cmds;
     public:
-    InterpretCommand( nlohmann::json jmsg )
+    InterpretCommand( nlohmann::json jmsg , IObjectPtr object)
     {
-        string objectId = jmsg["objectId"];
-        ///map<string, IResolverContainer*> *object= IoC::Resolve<map<string, IResolverContainer*>*>( "Game.Objects", objectId );
-
         string cmdId = jmsg["cmdId"];
         nlohmann::json arr = jmsg["args"];
+
+        if( object == nullptr )
+            throw bad_cast();
         
-        vector<int> *pv = new vector<int>();
-        for( auto a :arr  )
-        {
-            cout << " a: " <<a<<endl;
+       if( arr.size() == 2 )
+       {
+            cout << " a: "<< arr[0]<<","<< arr[1]<<" Object."+cmdId<<endl;   
+            Vector2 v( arr[0], arr[1] );
             
-            pv->push_back(a);
+            ICommandPtr cmd = IoC::Resolve<ICommandPtr, IObjectPtr, Vector2 >("Object."+cmdId, object, v );
+            m_cmds.push_back(cmd);
         }
-        ///ICommand* cmd = IoC::Resolve<ICommand*, map<string, IResolverContainer*>*, vector<int>*>( cmdId, object, pv );
-        ///m_cmds.push_back(cmd);
+        else
+        {
+            ICommandPtr cmd = IoC::Resolve<ICommandPtr, IObjectPtr >("Object."+cmdId, object );
+            m_cmds.push_back(cmd);
+        }
     }
 
     void Execute()
@@ -44,3 +52,5 @@ class InterpretCommand: public ICommand
         }
     }
 };
+
+#endif

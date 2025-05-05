@@ -10,16 +10,16 @@
 #include <iostream>
 using namespace std;
 
-typedef ICommand* (*Handler)(ICommand* c, IException* e);
+typedef ICommandPtr (*Handler)(ICommandPtr c, IException* e);
 
 class ExceptionHandler
 {
     static map<string, map< string , Handler>> m_ExceptionLibrary;
 public:
    
-    static ICommand *Handle( ICommand *c, IException *e)
+    static ICommandPtr Handle( ICommandPtr c, IException *e)
     {
-        string CommandType =  getType(c);
+        string CommandType =  getType(c.get());
         string ExceptionType =  getType(e);
 
         if( m_ExceptionLibrary.count(CommandType) > 0  )
@@ -32,7 +32,7 @@ public:
                 }else cout << "m_ExceptionLibrary[CommandType][ExceptionType] == NULL" <<endl;
             }else cout << "m_ExceptionLibrary[CommandType].count(ExceptionType) > 0 " << m_ExceptionLibrary[CommandType].count(ExceptionType)  <<endl; 
         }else cout<< "m_ExceptionLibrary.count(CommandType)" << m_ExceptionLibrary.count(CommandType)<<endl;
-        return new DoNothingCommand();
+        return make_shared<DoNothingCommand>();
     }
     static bool Register(string CommandType , string ExceptionType , Handler h )
     {
