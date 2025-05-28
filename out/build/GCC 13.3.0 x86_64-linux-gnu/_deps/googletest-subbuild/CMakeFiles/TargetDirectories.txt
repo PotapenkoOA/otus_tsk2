@@ -1,0 +1,3 @@
+/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/_deps/googletest-subbuild/CMakeFiles/googletest-populate.dir
+/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/_deps/googletest-subbuild/CMakeFiles/edit_cache.dir
+/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/_deps/googletest-subbuild/CMakeFiles/rebuild_cache.dir

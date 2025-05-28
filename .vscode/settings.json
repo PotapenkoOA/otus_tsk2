@@ -101,6 +101,13 @@
         "codecvt": "cpp",
         "regex": "cpp"
     },
-    "C_Cpp.errorSquiggles": "disabled"
+    "C_Cpp.errorSquiggles": "disabled",
+    "gcovViewer.buildDirectories": [
+        "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/CMakeFiles/starship.dir",
+        "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googlemock/CMakeFiles/gmock.dir/src",
+        "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googlemock/CMakeFiles/gmock_main.dir/src",
+        "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googletest/CMakeFiles/gtest.dir/src",
+        "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googletest/CMakeFiles/gtest_main.dir/src"
+    ]
     
 }

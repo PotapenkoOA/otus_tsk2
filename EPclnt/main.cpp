@@ -28,7 +28,7 @@ class EPclient
 		WORD wVerisonRequested;
 		WSADATA wsaData;
 		wVerisonRequested = MAKEWORD(2,2);
-		unsigned int err = WSAStartup(wVerisonRequested, &wsaData);
+		unsigned int err = WSAStartup( wVerisonRequested, &wsaData );
 		if (err != 0)
 		{
 			printf("Connection failed");
@@ -52,55 +52,12 @@ class EPclient
 	void query()
 	{
 		/// отправить сообщение
+		
 		/// получить сообщения
 		;
 	}
 };
 
-unsigned int OpenTcp(int nMode,char *sParas)  //char *sDevInfo,int iComID,int iBaudrate
-{
-	WORD wVerisonRequested;
-	WSADATA wsaData;
-	SOCKET sockClient;
-	char m_strIP[14];
-	char m_strPort[4];
-	unsigned int err;
-	int length=0;
-	if (nMode != 1)
-	{
-		return -1000;
-	}
-	length = strlen(sParas);
-	for (int i = 0; i < length-5; i++)
-	{
-		m_strIP[i]=sParas[i];
-	}
-
-	wVerisonRequested = MAKEWORD(2,2);
-	err = WSAStartup(wVerisonRequested, &wsaData);
-	if (err != 0)
-	{
-		printf("Connection failed");
-		return err;
-	}
-	// create socket
-	sockClient = socket(AF_INET, SOCK_STREAM, 0);
-	
-	
-	// connect server socket
-	struct sockaddr_in addrServer;
-	addrServer.sin_addr.S_un.S_addr = inet_addr(m_strIP);
-	addrServer.sin_family = AF_INET;
-	addrServer.sin_port = atoi(m_strPort);
-	int ret = connect(sockClient, (struct sockaddr *)&addrServer, sizeof(addrServer));
-	if (ret != 0)
-	{
-		printf("Connection failed!");
-		closesocket(sockClient);
-		return -1002;
-	}
-	return sockClient;
-}
 
 int main()
 {

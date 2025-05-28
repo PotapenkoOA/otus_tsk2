@@ -8,7 +8,8 @@
 #include <winSock2.h>
 #include <windows.h>
 #include <sys/types.h>  
-
+//#include <boost/asio/impl/src.hpp>
+#include <boost/asio.hpp>
 char message[] = "Hello there!\n";
 
 class server{
