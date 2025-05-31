@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/g++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -isystem /home/vboxuser/Documents/otus_3tsk/googletest/googletest/include -isystem /home/vboxuser/Documents/otus_3tsk/googletest/googletest
+CXX_INCLUDES = -isystem /home/vboxuser/Documents/microservices/otus_3tsk/googletest/googletest/include -isystem /home/vboxuser/Documents/microservices/otus_3tsk/googletest/googletest
 
 CXX_FLAGS = -g -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
 

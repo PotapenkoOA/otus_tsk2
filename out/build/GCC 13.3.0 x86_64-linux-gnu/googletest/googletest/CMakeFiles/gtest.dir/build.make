@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/vboxuser/Documents/otus_3tsk
+CMAKE_SOURCE_DIR = /home/vboxuser/Documents/microservices/otus_3tsk
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu"
+CMAKE_BINARY_DIR = "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu"
 
 # Include any dependencies generated for this target.
 include googletest/googletest/CMakeFiles/gtest.dir/depend.make
@@ -70,18 +70,18 @@ include googletest/googletest/CMakeFiles/gtest.dir/progress.make
 include googletest/googletest/CMakeFiles/gtest.dir/flags.make
 
 googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o: googletest/googletest/CMakeFiles/gtest.dir/flags.make
-googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o: /home/vboxuser/Documents/otus_3tsk/googletest/googletest/src/gtest-all.cc
+googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o: /home/vboxuser/Documents/microservices/otus_3tsk/googletest/googletest/src/gtest-all.cc
 googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o: googletest/googletest/CMakeFiles/gtest.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o"
-	cd "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googletest" && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o -MF CMakeFiles/gtest.dir/src/gtest-all.cc.o.d -o CMakeFiles/gtest.dir/src/gtest-all.cc.o -c /home/vboxuser/Documents/otus_3tsk/googletest/googletest/src/gtest-all.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o"
+	cd "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googletest" && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o -MF CMakeFiles/gtest.dir/src/gtest-all.cc.o.d -o CMakeFiles/gtest.dir/src/gtest-all.cc.o -c /home/vboxuser/Documents/microservices/otus_3tsk/googletest/googletest/src/gtest-all.cc
 
 googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/gtest.dir/src/gtest-all.cc.i"
-	cd "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googletest" && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vboxuser/Documents/otus_3tsk/googletest/googletest/src/gtest-all.cc > CMakeFiles/gtest.dir/src/gtest-all.cc.i
+	cd "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googletest" && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vboxuser/Documents/microservices/otus_3tsk/googletest/googletest/src/gtest-all.cc > CMakeFiles/gtest.dir/src/gtest-all.cc.i
 
 googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/gtest.dir/src/gtest-all.cc.s"
-	cd "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googletest" && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vboxuser/Documents/otus_3tsk/googletest/googletest/src/gtest-all.cc -o CMakeFiles/gtest.dir/src/gtest-all.cc.s
+	cd "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googletest" && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vboxuser/Documents/microservices/otus_3tsk/googletest/googletest/src/gtest-all.cc -o CMakeFiles/gtest.dir/src/gtest-all.cc.s
 
 # Object files for target gtest
 gtest_OBJECTS = \
@@ -93,19 +93,19 @@ gtest_EXTERNAL_OBJECTS =
 lib/libgtest.a: googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
 lib/libgtest.a: googletest/googletest/CMakeFiles/gtest.dir/build.make
 lib/libgtest.a: googletest/googletest/CMakeFiles/gtest.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library ../../lib/libgtest.a"
-	cd "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googletest" && $(CMAKE_COMMAND) -P CMakeFiles/gtest.dir/cmake_clean_target.cmake
-	cd "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googletest" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gtest.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library ../../lib/libgtest.a"
+	cd "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googletest" && $(CMAKE_COMMAND) -P CMakeFiles/gtest.dir/cmake_clean_target.cmake
+	cd "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googletest" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gtest.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 googletest/googletest/CMakeFiles/gtest.dir/build: lib/libgtest.a
 .PHONY : googletest/googletest/CMakeFiles/gtest.dir/build
 
 googletest/googletest/CMakeFiles/gtest.dir/clean:
-	cd "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googletest" && $(CMAKE_COMMAND) -P CMakeFiles/gtest.dir/cmake_clean.cmake
+	cd "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googletest" && $(CMAKE_COMMAND) -P CMakeFiles/gtest.dir/cmake_clean.cmake
 .PHONY : googletest/googletest/CMakeFiles/gtest.dir/clean
 
 googletest/googletest/CMakeFiles/gtest.dir/depend:
-	cd "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/vboxuser/Documents/otus_3tsk /home/vboxuser/Documents/otus_3tsk/googletest/googletest "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu" "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googletest" "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googletest/CMakeFiles/gtest.dir/DependInfo.cmake" "--color=$(COLOR)"
+	cd "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/vboxuser/Documents/microservices/otus_3tsk /home/vboxuser/Documents/microservices/otus_3tsk/googletest/googletest "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu" "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googletest" "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googletest/CMakeFiles/gtest.dir/DependInfo.cmake" "--color=$(COLOR)"
 .PHONY : googletest/googletest/CMakeFiles/gtest.dir/depend
 

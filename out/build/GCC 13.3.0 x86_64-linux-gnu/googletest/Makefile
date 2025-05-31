@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/vboxuser/Documents/otus_3tsk
+CMAKE_SOURCE_DIR = /home/vboxuser/Documents/microservices/otus_3tsk
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu"
+CMAKE_BINARY_DIR = "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -142,14 +142,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu" && $(CMAKE_COMMAND) -E cmake_progress_start "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/CMakeFiles" "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest//CMakeFiles/progress.marks"
-	cd "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 googletest/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/CMakeFiles" 0
+	cd "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu" && $(CMAKE_COMMAND) -E cmake_progress_start "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/CMakeFiles" "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest//CMakeFiles/progress.marks"
+	cd "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 googletest/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 googletest/clean
+	cd "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 googletest/clean
 .PHONY : clean
 
 # The main clean target
@@ -158,17 +158,17 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 googletest/preinstall
+	cd "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 googletest/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 googletest/preinstall
+	cd "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 googletest/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Help Target
@@ -195,6 +195,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

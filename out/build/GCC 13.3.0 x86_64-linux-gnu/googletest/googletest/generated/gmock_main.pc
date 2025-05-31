@@ -1,5 +1,5 @@
-libdir=/home/vboxuser/Documents/otus_3tsk/out/install/GCC 13.3.0 x86_64-linux-gnu/lib
-includedir=/home/vboxuser/Documents/otus_3tsk/out/install/GCC 13.3.0 x86_64-linux-gnu/include
+libdir=/home/vboxuser/Documents/microservices/otus_3tsk/out/install/GCC 13.3.0 x86_64-linux-gnu/lib
+includedir=/home/vboxuser/Documents/microservices/otus_3tsk/out/install/GCC 13.3.0 x86_64-linux-gnu/include
 
 Name: gmock_main
 Description: GoogleMock (with main() function)

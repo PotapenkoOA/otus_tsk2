@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/g++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/vboxuser/Documents/otus_3tsk/googletest/include -I/home/vboxuser/Documents/otus_3tsk/googlemock/include -isystem /home/vboxuser/Documents/otus_3tsk/googletest/googletest/include -isystem /home/vboxuser/Documents/otus_3tsk/googletest/googletest -isystem /home/vboxuser/Documents/otus_3tsk/googletest/googlemock/include -isystem /home/vboxuser/Documents/otus_3tsk/googletest/googlemock
+CXX_INCLUDES = -I/home/vboxuser/Documents/microservices/otus_3tsk/googletest/include -I/home/vboxuser/Documents/microservices/otus_3tsk/googlemock/include
 
-CXX_FLAGS =  -fprofile-arcs -ftest-coverage -g
+CXX_FLAGS = -g
 

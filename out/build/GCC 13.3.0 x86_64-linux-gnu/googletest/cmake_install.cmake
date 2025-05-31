@@ -1,8 +1,8 @@
-# Install script for directory: /home/vboxuser/Documents/otus_3tsk/googletest
+# Install script for directory: /home/vboxuser/Documents/microservices/otus_3tsk/googletest
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/vboxuser/Documents/otus_3tsk/out/install/GCC 13.3.0 x86_64-linux-gnu")
+  set(CMAKE_INSTALL_PREFIX "/home/vboxuser/Documents/microservices/otus_3tsk/out/install/GCC 13.3.0 x86_64-linux-gnu")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -44,7 +44,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googlemock/cmake_install.cmake")
+  include("/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googlemock/cmake_install.cmake")
 
 endif()
 

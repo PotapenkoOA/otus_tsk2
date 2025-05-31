@@ -1,8 +1,8 @@
-# Install script for directory: /home/vboxuser/Documents/otus_3tsk/googletest/googlemock
+# Install script for directory: /home/vboxuser/Documents/microservices/otus_3tsk/googletest/googlemock
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/vboxuser/Documents/otus_3tsk/out/install/GCC 13.3.0 x86_64-linux-gnu")
+  set(CMAKE_INSTALL_PREFIX "/home/vboxuser/Documents/microservices/otus_3tsk/out/install/GCC 13.3.0 x86_64-linux-gnu")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -43,28 +43,28 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "gmock" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/vboxuser/Documents/otus_3tsk/googletest/googlemock/include/")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/vboxuser/Documents/microservices/otus_3tsk/googletest/googlemock/include/")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "gmock" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/lib/libgmock.a")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/lib/libgmock.a")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "gmock" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/lib/libgmock_main.a")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/lib/libgmock_main.a")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "gmock" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googletest/generated/gmock.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googletest/generated/gmock.pc")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "gmock" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googletest/generated/gmock_main.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googletest/generated/gmock_main.pc")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googletest/cmake_install.cmake")
+  include("/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googletest/cmake_install.cmake")
 
 endif()
 

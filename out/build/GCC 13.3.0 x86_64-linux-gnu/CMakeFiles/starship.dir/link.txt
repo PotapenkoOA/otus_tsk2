@@ -1,1 +1,1 @@
-/usr/bin/g++  -fprofile-arcs -ftest-coverage -g  -fprofile-arcs -ftest-coverage CMakeFiles/starship.dir/main.cpp.o -o starship  lib/libgtest.a --coverage lib/libgmock.a lib/libgtest.a 
+/usr/bin/g++ -g CMakeFiles/starship.dir/main.cpp.o -o starship  -lgtest --coverage -lgmock 

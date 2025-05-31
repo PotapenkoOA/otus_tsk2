@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/vboxuser/Documents/otus_3tsk
+CMAKE_SOURCE_DIR = /home/vboxuser/Documents/microservices/otus_3tsk
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu"
+CMAKE_BINARY_DIR = "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu"
 
 # Include any dependencies generated for this target.
 include CMakeFiles/starship.dir/depend.make
@@ -70,18 +70,18 @@ include CMakeFiles/starship.dir/progress.make
 include CMakeFiles/starship.dir/flags.make
 
 CMakeFiles/starship.dir/main.cpp.o: CMakeFiles/starship.dir/flags.make
-CMakeFiles/starship.dir/main.cpp.o: /home/vboxuser/Documents/otus_3tsk/main.cpp
+CMakeFiles/starship.dir/main.cpp.o: /home/vboxuser/Documents/microservices/otus_3tsk/main.cpp
 CMakeFiles/starship.dir/main.cpp.o: CMakeFiles/starship.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/starship.dir/main.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/starship.dir/main.cpp.o -MF CMakeFiles/starship.dir/main.cpp.o.d -o CMakeFiles/starship.dir/main.cpp.o -c /home/vboxuser/Documents/otus_3tsk/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/starship.dir/main.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/starship.dir/main.cpp.o -MF CMakeFiles/starship.dir/main.cpp.o.d -o CMakeFiles/starship.dir/main.cpp.o -c /home/vboxuser/Documents/microservices/otus_3tsk/main.cpp
 
 CMakeFiles/starship.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/starship.dir/main.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vboxuser/Documents/otus_3tsk/main.cpp > CMakeFiles/starship.dir/main.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vboxuser/Documents/microservices/otus_3tsk/main.cpp > CMakeFiles/starship.dir/main.cpp.i
 
 CMakeFiles/starship.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/starship.dir/main.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vboxuser/Documents/otus_3tsk/main.cpp -o CMakeFiles/starship.dir/main.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vboxuser/Documents/microservices/otus_3tsk/main.cpp -o CMakeFiles/starship.dir/main.cpp.s
 
 # Object files for target starship
 starship_OBJECTS = \
@@ -92,13 +92,10 @@ starship_EXTERNAL_OBJECTS =
 
 starship: CMakeFiles/starship.dir/main.cpp.o
 starship: CMakeFiles/starship.dir/build.make
-starship: lib/libgtest.a
-starship: lib/libgmock.a
-starship: lib/libgtest.a
 starship: CMakeFiles/starship.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable starship"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable starship"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/starship.dir/link.txt --verbose=$(VERBOSE)
-	/usr/bin/cmake -D TEST_TARGET=starship -D "TEST_EXECUTABLE=/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/starship" -D TEST_EXECUTOR= -D "TEST_WORKING_DIR=/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu" -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_FILTER= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=starship_TESTS -D "CTEST_FILE=/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/starship[1]_tests.cmake" -D TEST_DISCOVERY_TIMEOUT=5 -D TEST_XML_OUTPUT_DIR= -P /usr/share/cmake-3.28/Modules/GoogleTestAddTests.cmake
+	/usr/bin/cmake -D TEST_TARGET=starship -D "TEST_EXECUTABLE=/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/starship" -D TEST_EXECUTOR= -D "TEST_WORKING_DIR=/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu" -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_FILTER= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=starship_TESTS -D "CTEST_FILE=/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/starship[1]_tests.cmake" -D TEST_DISCOVERY_TIMEOUT=5 -D TEST_XML_OUTPUT_DIR= -P /usr/share/cmake-3.28/Modules/GoogleTestAddTests.cmake
 
 # Rule to build all files generated by this target.
 CMakeFiles/starship.dir/build: starship
@@ -109,6 +106,6 @@ CMakeFiles/starship.dir/clean:
 .PHONY : CMakeFiles/starship.dir/clean
 
 CMakeFiles/starship.dir/depend:
-	cd "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/vboxuser/Documents/otus_3tsk /home/vboxuser/Documents/otus_3tsk "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu" "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu" "/home/vboxuser/Documents/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/CMakeFiles/starship.dir/DependInfo.cmake" "--color=$(COLOR)"
+	cd "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/vboxuser/Documents/microservices/otus_3tsk /home/vboxuser/Documents/microservices/otus_3tsk "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu" "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu" "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/CMakeFiles/starship.dir/DependInfo.cmake" "--color=$(COLOR)"
 .PHONY : CMakeFiles/starship.dir/depend
 
