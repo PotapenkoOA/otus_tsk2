@@ -47,7 +47,7 @@ jobs:
               run: cd build; make; 
 
             - name: run tests
-              run: cd build; ./../autorization/build/autorization & ./starship & ( sleep 3  | ./../agent/build/agent );
+              run: cd build; cp ./../autorization/build/autorization ./autorization; cp ./../agent/build/agent ./agent; ./autorization & ./starship & ( sleep 10 ; ./agent );
 
             - name: delete adapters
               run: rm -rf adapters; ls;
