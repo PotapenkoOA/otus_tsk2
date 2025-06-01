@@ -14,8 +14,8 @@
 # EXTERNAL cache entries
 ########################
 
-//Builds the googlemock subproject
-BUILD_GMOCK:BOOL=ON
+//Path to a file.
+BOOSTJSON_INCLUDE_DIR:PATH=/usr/include
 
 //The directory containing a CMake configuration file for Boost.
 Boost_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Boost-1.83.0
@@ -289,13 +289,87 @@ CMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
-//Use Abseil and RE2. Requires Abseil and RE2 to be separately
-// added to the build.
-GTEST_HAS_ABSL:BOOL=OFF
+//Directory under which to collect all populated content
+FETCHCONTENT_BASE_DIR:PATH=/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/_deps
 
-//Enable installation of googletest. (Projects embedding googletest
-// may want to turn this OFF.)
-INSTALL_GTEST:BOOL=ON
+//Disables all attempts to download or update content and assumes
+// source dirs already exist
+FETCHCONTENT_FULLY_DISCONNECTED:BOOL=OFF
+
+//Enables QUIET option for all content population
+FETCHCONTENT_QUIET:BOOL=ON
+
+//When not empty, overrides where to find pre-populated content
+// for nlohmann_json
+FETCHCONTENT_SOURCE_DIR_NLOHMANN_JSON:PATH=
+
+//Enables UPDATE_DISCONNECTED behavior for all content population
+FETCHCONTENT_UPDATES_DISCONNECTED:BOOL=OFF
+
+//Enables UPDATE_DISCONNECTED behavior just for population of nlohmann_json
+FETCHCONTENT_UPDATES_DISCONNECTED_NLOHMANN_JSON:BOOL=OFF
+
+//Build the unit tests when BUILD_TESTING is enabled.
+JSON_BuildTests:BOOL=OFF
+
+//Enable CI build targets.
+JSON_CI:BOOL=OFF
+
+//Enable diagnostic positions.
+JSON_Diagnostic_Positions:BOOL=OFF
+
+//Use extended diagnostic messages.
+JSON_Diagnostics:BOOL=OFF
+
+//Disable default integer enum serialization.
+JSON_DisableEnumSerialization:BOOL=OFF
+
+//Place user-defined string literals in the global namespace.
+JSON_GlobalUDLs:BOOL=ON
+
+//Enable implicit conversions.
+JSON_ImplicitConversions:BOOL=ON
+
+//Install CMake targets during install step.
+JSON_Install:BOOL=OFF
+
+//Enable legacy discarded value comparison.
+JSON_LegacyDiscardedValueComparison:BOOL=OFF
+
+//Use non-amalgamated version of the library.
+JSON_MultipleHeaders:BOOL=ON
+
+//Include as system headers (skip for clang-tidy).
+JSON_SystemInclude:BOOL=OFF
+
+//Adds a target for building the doxygen documentation
+JWT_BUILD_DOCS:BOOL=OFF
+
+//Configure CMake to build examples (or not)
+JWT_BUILD_EXAMPLES:BOOL=ON
+
+//Configure CMake to build tests (or not)
+JWT_BUILD_TESTS:BOOL=OFF
+
+//Do not include the base64 implementation from this library
+JWT_DISABLE_BASE64:BOOL=OFF
+
+//Enable code coverage testing
+JWT_ENABLE_COVERAGE:BOOL=OFF
+
+//Enable fuzz testing
+JWT_ENABLE_FUZZING:BOOL=OFF
+
+//Use find_package() to locate nlohman-json required for tests
+// and examples
+JWT_EXTERNAL_NLOHMANN_JSON:BOOL=OFF
+
+//Use find_package() to locate picojson, provided to integrate
+// with package managers
+JWT_EXTERNAL_PICOJSON:BOOL=OFF
+
+//Determines which SSL library to build with
+JWT_SSL_LIBRARY:STRING=OpenSSL
 
 //Path to a library.
 OPENSSL_CRYPTO_LIBRARY:FILEPATH=/usr/local/lib64/libcrypto.so
@@ -305,6 +379,9 @@ OPENSSL_INCLUDE_DIR:PATH=/usr/local/include
 
 //Path to a library.
 OPENSSL_SSL_LIBRARY:FILEPATH=/usr/local/lib64/libssl.so
+
+//Path to a file.
+PICOJSON_INCLUDE_DIR:PATH=/usr/local/include
 
 //Arguments to supply to pkg-config
 PKG_CONFIG_ARGN:STRING=
@@ -321,54 +398,53 @@ boost_headers_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_headers-1.83.0
 //The directory containing a CMake configuration file for boost_json.
 boost_json_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_json-1.83.0
 
-//Value Computed by CMake
-gmock_BINARY_DIR:STATIC=/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googlemock
+//The directory containing a CMake configuration file for jsoncons.
+jsoncons_DIR:PATH=jsoncons_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for jsoncpp.
+jsoncpp_DIR:PATH=jsoncpp_DIR-NOTFOUND
 
 //Value Computed by CMake
-gmock_IS_TOP_LEVEL:STATIC=OFF
+jwt-cpp-examples_BINARY_DIR:STATIC=/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/jwt-cpp/example
 
 //Value Computed by CMake
-gmock_SOURCE_DIR:STATIC=/home/vboxuser/Documents/microservices/otus_3tsk/googletest/googlemock
-
-//Build all of Google Mock's own tests.
-gmock_build_tests:BOOL=OFF
+jwt-cpp-examples_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
-googletest-distribution_BINARY_DIR:STATIC=/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest
+jwt-cpp-examples_SOURCE_DIR:STATIC=/home/vboxuser/Documents/microservices/otus_3tsk/jwt-cpp/example
 
 //Value Computed by CMake
-googletest-distribution_IS_TOP_LEVEL:STATIC=OFF
+jwt-cpp-traits_BINARY_DIR:STATIC=/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/jwt-cpp/example/traits
 
 //Value Computed by CMake
-googletest-distribution_SOURCE_DIR:STATIC=/home/vboxuser/Documents/microservices/otus_3tsk/googletest
+jwt-cpp-traits_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
-gtest_BINARY_DIR:STATIC=/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googletest
+jwt-cpp-traits_SOURCE_DIR:STATIC=/home/vboxuser/Documents/microservices/otus_3tsk/jwt-cpp/example/traits
 
 //Value Computed by CMake
-gtest_IS_TOP_LEVEL:STATIC=OFF
-
-//Value Computed by CMake
-gtest_SOURCE_DIR:STATIC=/home/vboxuser/Documents/microservices/otus_3tsk/googletest/googletest
-
-//Build gtest's sample programs.
-gtest_build_samples:BOOL=OFF
-
-//Build all of gtest's own tests.
-gtest_build_tests:BOOL=OFF
-
-//Disable uses of pthreads in gtest.
-gtest_disable_pthreads:BOOL=OFF
-
-//Use shared (DLL) run-time lib even when Google Test is built
-// as static lib.
-gtest_force_shared_crt:BOOL=OFF
-
-//Build gtest with internal symbols hidden in shared libraries.
-gtest_hide_internal_symbols:BOOL=OFF
+jwt-cpp_BINARY_DIR:STATIC=/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/jwt-cpp
 
 //The directory containing a CMake configuration file for jwt-cpp.
 jwt-cpp_DIR:PATH=/usr/local/cmake
+
+//Value Computed by CMake
+jwt-cpp_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+jwt-cpp_SOURCE_DIR:STATIC=/home/vboxuser/Documents/microservices/otus_3tsk/jwt-cpp
+
+//Value Computed by CMake
+nlohmann_json_BINARY_DIR:STATIC=/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/_deps/nlohmann_json-build
+
+//The directory containing a CMake configuration file for nlohmann_json.
+nlohmann_json_DIR:PATH=nlohmann_json_DIR-NOTFOUND
+
+//Value Computed by CMake
+nlohmann_json_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+nlohmann_json_SOURCE_DIR:STATIC=/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/_deps/nlohmann_json-src
 
 //Value Computed by CMake
 starship_BINARY_DIR:STATIC=/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu
@@ -464,8 +540,6 @@ CMAKE_GENERATOR_INSTANCE:INTERNAL=
 CMAKE_GENERATOR_PLATFORM:INTERNAL=
 //Name of generator toolset.
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
-//Test CMAKE_HAVE_LIBC_PTHREAD
-CMAKE_HAVE_LIBC_PTHREAD:INTERNAL=1
 //Source directory with the top level CMakeLists.txt file for this
 // project
 CMAKE_HOME_DIRECTORY:INTERNAL=/home/vboxuser/Documents/microservices/otus_3tsk
@@ -520,7 +594,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=5
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -568,9 +642,10 @@ CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding Boost
 FIND_PACKAGE_MESSAGE_DETAILS_Boost:INTERNAL=[/usr/lib/x86_64-linux-gnu/cmake/Boost-1.83.0/BoostConfig.cmake][cfound components: json ][v1.83.0()]
 //Details about finding OpenSSL
-FIND_PACKAGE_MESSAGE_DETAILS_OpenSSL:INTERNAL=[/usr/local/lib64/libcrypto.so][/usr/local/include][c ][v3.6.0()]
-//Details about finding Threads
-FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_OpenSSL:INTERNAL=[/usr/local/lib64/libcrypto.so][/usr/local/include][c ][v3.6.0(1.0.1)]
+//STRINGS property for variable: JWT_SSL_LIBRARY
+JWT_SSL_LIBRARY-STRINGS:INTERNAL=OpenSSL;LibreSSL;wolfSSL
+NLOHMANN_JSON_CONFIG_INSTALL_DIR:INTERNAL=share/cmake/nlohmann_json
 //ADVANCED property for variable: OPENSSL_CRYPTO_LIBRARY
 OPENSSL_CRYPTO_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENSSL_INCLUDE_DIR
@@ -613,19 +688,4 @@ boost_container_DIR-ADVANCED:INTERNAL=1
 boost_headers_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: boost_json_DIR
 boost_json_DIR-ADVANCED:INTERNAL=1
-cmake_package_name:INTERNAL=GTest
-generated_dir:INTERNAL=/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/googletest/googletest/generated
-//ADVANCED property for variable: gmock_build_tests
-gmock_build_tests-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: gtest_build_samples
-gtest_build_samples-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: gtest_build_tests
-gtest_build_tests-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: gtest_disable_pthreads
-gtest_disable_pthreads-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: gtest_force_shared_crt
-gtest_force_shared_crt-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: gtest_hide_internal_symbols
-gtest_hide_internal_symbols-ADVANCED:INTERNAL=1
-targets_export_name:INTERNAL=GTestTargets
 

@@ -27,6 +27,7 @@ find_package(jwt-cpp CONFIG REQUIRED)
 # Настраиваем флаги для покрытия
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
 #set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fprofile-arcs -ftest-coverage")
+add_subdirectory(jwt-cpp)
 
 include_directories(googletest/include) # this is so we can #include <gtest/gtest.h>
 
