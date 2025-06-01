@@ -35,10 +35,10 @@ jobs:
               run: cd parser/build; make; ./parser; 
             
             - name: autorization configure
-              run: mkdir autorization/build; cd autorization/build; cmake ..; 
+              run: mkdir autorization/build; cd autorization/build; cmake ..; ls
 
             - name: agent configure
-              run: mkdir agent/build; cd agent/build; cmake ..; 
+              run: mkdir agent/build; cd agent/build; cmake ..; ls
             
             - name: configure
               run: mkdir build; cd build; cmake ..; 
@@ -47,7 +47,7 @@ jobs:
               run: cd build; make; 
 
             - name: run tests
-              run: cd build; ls ./../autorization/build; ls ./../agent/build #./starship & ./../autorization/build/autorization & ( sleep 3 &  ./../agent/build/agent );
+              run: cd build; #./starship & ./../autorization/build/autorization & ( sleep 3 &  ./../agent/build/agent );
 
             - name: delete adapters
               run: rm -rf adapters; ls;
