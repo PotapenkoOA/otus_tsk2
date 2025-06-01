@@ -1079,7 +1079,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "5"
+			"value" : "1"
 		},
 		{
 			"name" : "CMAKE_OBJCOPY",
@@ -1611,7 +1611,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "[/usr/local/lib64/libcrypto.so][/usr/local/include][c ][v3.6.0(1.0.1)]"
+			"value" : "[/usr/local/lib64/libcrypto.so][/usr/local/include][c ][v3.6.0()]"
 		},
 		{
 			"name" : "JSON_BuildTests",
