@@ -1,0 +1,7 @@
+prefix=/home/vboxuser/Documents/microservices/otus_3tsk/out/install/GCC 13.3.0 x86_64-linux-gnu
+includedir=${prefix}/include
+
+Name: nlohmann_json
+Description: JSON for Modern C++
+Version: 3.12.0
+Cflags: -I${includedir}

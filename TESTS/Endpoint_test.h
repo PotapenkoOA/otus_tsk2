@@ -18,7 +18,7 @@ using ::testing::InSequence;
 
 using namespace std;
 
-#include "../json-develop/single_include/nlohmann/json.hpp"
+
 
 /*
     Message Format:
@@ -41,7 +41,7 @@ TEST(InterpreterCmdTest, parse_msg )
 {
     IoC::Resolve<ICommandPtr, string, IResolverContainer*>("IoC.Register", "Object.move", 
         new ResolverContainer< function<ICommandPtr(IObjectPtr)>> (
-        function<ICommandPtr(IObjectPtr)>([](IObjectPtr obj){
+        function([](IObjectPtr obj){
            cout<<"lets move!\n";
            return make_shared<MOCK_CMD>();
         })
@@ -49,7 +49,7 @@ TEST(InterpreterCmdTest, parse_msg )
 
     IoC::Resolve<ICommandPtr, string, IResolverContainer*>("IoC.Register", "Object.setLocation", 
         new ResolverContainer< function<ICommandPtr(IObjectPtr,Vector2)>> (
-            function<ICommandPtr(IObjectPtr,Vector2)>([](IObjectPtr obj,Vector2 newValue){
+            function([](IObjectPtr obj,Vector2 newValue){
                 cout<<"set location!\n";
                 return make_shared<MOCK_CMD>();
         })
@@ -79,7 +79,7 @@ TEST(InterpreterCmdTest, add_interpreter_cmd )
     shared_ptr<MOCK_CMD> pcmd1 = make_shared<MOCK_CMD>();
     IoC::Resolve<ICommandPtr, string, IResolverContainer*>("IoC.Register", "Object.move", 
         new ResolverContainer< function<ICommandPtr(IObjectPtr)>> (
-        function<ICommandPtr(IObjectPtr)>([&](IObjectPtr obj){
+        function([&](IObjectPtr obj){
            cout<<"lets move!\n";
            return pcmd1;
         })
@@ -87,7 +87,7 @@ TEST(InterpreterCmdTest, add_interpreter_cmd )
 
     IoC::Resolve<ICommandPtr, string, IResolverContainer*>("IoC.Register", "Object.setLocation", 
         new ResolverContainer< function<ICommandPtr(IObjectPtr,Vector2)>> (
-            function<ICommandPtr(IObjectPtr,Vector2)>([&](IObjectPtr obj,Vector2 newValue){
+            function([&](IObjectPtr obj,Vector2 newValue){
                 cout<<"set location!\n";
                 return pcmd1;
         })
@@ -124,7 +124,7 @@ TEST(InterpreterCmdTest, one_cmd_two_objects )
     shared_ptr<MOCK_CMD> pcmd1 = make_shared<MOCK_CMD>();
     IoC::Resolve<ICommandPtr, string, IResolverContainer*>("IoC.Register", "Object.move", 
         new ResolverContainer< function<ICommandPtr(IObjectPtr)>> (
-        function<ICommandPtr(IObjectPtr)>([&](IObjectPtr obj){
+        function([&](IObjectPtr obj){
            cout<<"lets move!\n";
            return pcmd1;
         })
@@ -132,7 +132,7 @@ TEST(InterpreterCmdTest, one_cmd_two_objects )
 
     IoC::Resolve<ICommandPtr, string, IResolverContainer*>("IoC.Register", "Object.setLocation", 
         new ResolverContainer< function<ICommandPtr(IObjectPtr,Vector2)>> (
-            function<ICommandPtr(IObjectPtr,Vector2)>([&](IObjectPtr obj,Vector2 newValue){
+            function([&](IObjectPtr obj,Vector2 newValue){
                 cout<<"set location!\n";
                 return pcmd1;
         })

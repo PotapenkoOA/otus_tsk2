@@ -1,109 +1,118 @@
-/* Простое сервер-клиентское приложение на C++
-Простой клиент */
+#include <boost/json.hpp>
+#include <boost/asio.hpp>
+#include <boost/beast.hpp>
+#include <iostream>
 
-#include <stdio.h>  
-#include <stdlib.h>  
-#include <errno.h>  
-#include <string.h>
-#include <winSock2.h>
-#include <windows.h>
-#include <sys/types.h> 
+#include "endpoint.h"
 
-class EPclient
-{
-	SOCKET sockClient;
-	public:
-	EPclient()
-	{
-		
-	}
-	~EPclient()
-	{
-		closesocket(sockClient);
-	}
-	bool Connect()
-	{
-		// connect server socket
-		sockClient = socket(AF_INET, SOCK_STREAM, 0);
-		WORD wVerisonRequested;
-		WSADATA wsaData;
-		wVerisonRequested = MAKEWORD(2,2);
-		unsigned int err = WSAStartup(wVerisonRequested, &wsaData);
-		if (err != 0)
-		{
-			printf("Connection failed");
-			return err;
-		}
+namespace json = boost::json;
 
-		char m_strIP[14];
-		char m_strPort[4];
-		struct sockaddr_in addrServer;
-		addrServer.sin_addr.S_un.S_addr = inet_addr(m_strIP);
-		addrServer.sin_family = AF_INET;
-		addrServer.sin_port = atoi(m_strPort);
-		int ret = connect(sockClient, (struct sockaddr *)&addrServer, sizeof(addrServer));
-		if (ret != 0)
-		{
-			printf("Connection failed!");
-			closesocket(sockClient);
-			return -1002;
-		}
-	}
-	void query()
-	{
-		/// отправить сообщение
-		/// получить сообщения
-		;
-	}
+std::string game_id;
+std::string my_jwt;
+
+class agent{
+    ep_client client;
+    
+    public:
+
+    
+    void autontification(  std::string srv_ip, unsigned int port )
+    { 
+        std::cout << "Auth Server IP: "<<srv_ip<<std::endl;
+        client.connect( srv_ip, port );
+    }
+
+    void gameserver(  std::string srv_ip, unsigned int port )
+    {
+        std::cout << "Game Server IP: "<<srv_ip<<std::endl;
+        client.connect( srv_ip, port );
+    }
+
+    void send_new_game_msg(  )
+    {
+        std::string result = "";
+
+        json::object message1;
+        message1["cmd"] = "new_game"; 
+        message1["gamer"] = {"han_solo", "malcolm_reynolds", "spike_spiegel"};    
+        client.chat( json::serialize(message1) , result);
+
+        json::value jv;
+        try
+        {
+            boost::system::error_code ec;
+            jv = json::parse( result, ec );
+            if( ec )
+                std::cout << "Parsing failed: " << ec.message() << "\n";
+        }
+        catch( std::bad_alloc const& e)
+        {
+            std::cout << "Parsing failed: " << e.what() << "\n";
+        }  
+        
+        game_id = json::value_to<std::string>(jv.at("game_id"));
+    }
+
+    void send_ask_jwt_msg(  )
+    {
+        std::string result = "";
+
+        json::object message;
+        message["cmd"] = "get_jwt"; 
+        message["game_id"] = game_id;
+        message["user_id"] = "han_solo";
+        std::cout << "json:" << json::serialize(message) <<std::endl ;
+        client.chat( json::serialize(message) , result);
+
+        json::value jv;
+        try 
+        {
+            boost::system::error_code ec;
+            jv = json::parse( result, ec );
+            if( ec )
+                std::cout << "Parsing failed: " << ec.message() << "\n";
+        }
+        catch( std::bad_alloc const& e)
+        {
+            std::cout << "Parsing failed: " << e.what() << "\n";
+        }   
+        my_jwt = jv.at("jwt").as_string().c_str();
+        //std::cout << <<std::endl;
+    }
+
+    void send_jwt_msg(  )
+    {
+        std::string result = "";
+        json::object message;
+        message["cmd"] = "log"; 
+        message["jwt"] = my_jwt;
+        message["msg"] = "Hello,world!";
+        std::cout << "json:" << json::serialize(message) <<std::endl ;
+        client.chat( json::serialize(message) , result);
+    }
+
 };
 
-unsigned int OpenTcp(int nMode,char *sParas)  //char *sDevInfo,int iComID,int iBaudrate
-{
-	WORD wVerisonRequested;
-	WSADATA wsaData;
-	SOCKET sockClient;
-	char m_strIP[14];
-	char m_strPort[4];
-	unsigned int err;
-	int length=0;
-	if (nMode != 1)
-	{
-		return -1000;
-	}
-	length = strlen(sParas);
-	for (int i = 0; i < length-5; i++)
-	{
-		m_strIP[i]=sParas[i];
-	}
+int main() {
+    std::string auth_ip  = "127.0.0.1";
+    unsigned int auth_port = 12345;
 
-	wVerisonRequested = MAKEWORD(2,2);
-	err = WSAStartup(wVerisonRequested, &wsaData);
-	if (err != 0)
-	{
-		printf("Connection failed");
-		return err;
-	}
-	// create socket
-	sockClient = socket(AF_INET, SOCK_STREAM, 0);
-	
-	
-	// connect server socket
-	struct sockaddr_in addrServer;
-	addrServer.sin_addr.S_un.S_addr = inet_addr(m_strIP);
-	addrServer.sin_family = AF_INET;
-	addrServer.sin_port = atoi(m_strPort);
-	int ret = connect(sockClient, (struct sockaddr *)&addrServer, sizeof(addrServer));
-	if (ret != 0)
-	{
-		printf("Connection failed!");
-		closesocket(sockClient);
-		return -1002;
-	}
-	return sockClient;
+    std::string game_ip  = "127.0.0.1";
+    unsigned int game_port = 34567;
+    
+    agent gamer;
+
+    gamer.autontification( "127.0.0.1", 12345);
+    
+    gamer.send_new_game_msg();
+ 
+    gamer.send_ask_jwt_msg();  
+
+    gamer.gameserver( "127.0.0.1", 34567);
+
+    gamer.send_jwt_msg( );
+
+    std::cout<<"happy end\n";
+
+    return 0;
 }
-
-int main()
-{
-	
-}
-

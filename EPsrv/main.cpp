@@ -1,59 +1,48 @@
-/* Простое сервер-клиентское приложение на C++
-Простой сервер */
+#include <boost/json.hpp>
+#include <iostream>
+#include <string>
 
-#include <stdio.h>  
-#include <stdlib.h>  
-#include <errno.h>  
-#include <string.h>
-#include <winSock2.h>
-#include <windows.h>
-#include <sys/types.h>  
+#include "endpoint.h"
 
-char message[] = "Hello there!\n";
+#include "commands.h"
 
-class server{
+using namespace std;
 
-    int sock;
-    sockaddr_in addr;
-
-    public:
-    server()
-    {
-        sock = socket(AF_INET, SOCK_STREAM, 0);
-        if(sock < 0)
-        {
-            perror("socket");
-            exit(1);
-        }
-        addr.sin_family = AF_INET;
-        addr.sin_port = htons(3425);
-        addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
-        if(connect(sock, (struct sockaddr *)&addr, sizeof(addr)) < 0)
-        {
-            perror("connect");
-            exit(2);
-        }
-    }
-    void Listen()
-    {
-        send(sock, message, sizeof(message), 0);
-    }
-    void Reply()
-    {
-        char buf[sizeof(message)];
-        recv(sock, buf, sizeof(message), 0); 
-        printf(buf);
-    }
-    ~server()
-    {
-        closesocket(sock);
-    }
-
-};
-
-int main()
+bool HandleMessage(string json_str, string &reply_str)
 {
-    
-    
-    return 0;
+    boost::json::value j = boost::json::parse(json_str);
+    string value = j.at("cmd").as_string().c_str();
+   
+    if (value == "log")
+    {
+        reply_str = VerifyCmd(j);
+    }
+    else reply_str = "";
+
+    return true;
+}
+
+int main() {
+    while(1)
+    {
+        ep_server srv;
+        if( !srv.connected( 34567 ) )
+            return 0;
+        
+        try{
+            string client_message;
+            string reply_message;
+            while( srv.listen( client_message ) )
+            {
+                HandleMessage( client_message, reply_message );
+                srv.reply( reply_message );
+
+                client_message = "";
+            }
+        }
+        catch(exception& e) {
+            cerr << "Exception: " << e.what() << endl;
+        }
+    }
+    return 1;
 }

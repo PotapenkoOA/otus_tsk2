@@ -1,0 +1,1 @@
+/usr/bin/g++ -g "CMakeFiles/boost-json.dir/boost-json.cpp.o" -o boost-json  -Wl,-rpath,/usr/local/lib64 libboost_json.a /usr/local/lib64/libssl.so /usr/local/lib64/libcrypto.so 

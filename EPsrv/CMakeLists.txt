@@ -1,17 +1,16 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.10.0)
+project(game VERSION 0.1.0 LANGUAGES C CXX)
 
-set(GOOGLETEST_VERSION 1.15.2)
+find_package(Boost COMPONENTS json)
 
-project(EPsrv VERSION 0.1.0 LANGUAGES C CXX)
+find_package(OpenSSL REQUIRED)
 
-if(WIN32)
-    link_libraries(ws2_32 wsock32)
-endif()
-
-add_executable(EPsrv main.cpp)
+find_package(jwt-cpp CONFIG REQUIRED)
 
 
-#find_library(ws2_32_LIBRARY_PATH ws2_32)
-#add_executable(Executive ${exec_src})
-#target_link_libraries(Executive ${ws2_32_LIBRARY_PATH})
+include_directories(${Boost_INCLUDE_DIRS})
+
+add_executable(game main.cpp)
+
+target_link_libraries(game PRIVATE ${Boost_LIBRARIES} ${OpenSSL_LIBRARIES} jwt-cpp::jwt-cpp)
 
