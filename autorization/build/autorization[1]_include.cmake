@@ -1,5 +1,0 @@
-if(EXISTS "/home/vboxuser/Documents/microservices/autorization/build/autorization[1]_tests.cmake")
-  include("/home/vboxuser/Documents/microservices/autorization/build/autorization[1]_tests.cmake")
-else()
-  add_test(autorization_NOT_BUILT autorization_NOT_BUILT)
-endif()
