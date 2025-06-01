@@ -21,6 +21,9 @@ jobs:
               
             - name: install boost
               run: sudo apt-get install libboost-all-dev
+              
+            - name: install jwt
+              run: git clone https://github.com/Thalhammer/jwt-cpp.git;cd jwt-cpp;mkdir build;cd build;cmake ..;make;
           
             - name: checkout
               uses: actions/checkout@v4
