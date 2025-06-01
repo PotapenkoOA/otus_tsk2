@@ -15,6 +15,12 @@ jobs:
         steps:
             - name: install gtest
               run: sudo apt-get install -y libgtest-dev libgmock-dev 
+              
+            - name: install openssl
+              run: sudo apt-get install -y openssl
+              
+            - name: install boost
+              run: sudo apt get install libboost-all-dev
           
             - name: checkout
               uses: actions/checkout@v4
