@@ -1,0 +1,3 @@
+/home/vboxuser/Documents/microservices/autorization/build/CMakeFiles/autorization.dir
+/home/vboxuser/Documents/microservices/autorization/build/CMakeFiles/edit_cache.dir
+/home/vboxuser/Documents/microservices/autorization/build/CMakeFiles/rebuild_cache.dir

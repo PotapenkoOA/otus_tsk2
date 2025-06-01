@@ -1,5 +1,0 @@
-InterpreterCmdTest.parse_msg 1 0.00889703
-InterpreterCmdTest.add_interpreter_cmd 1 0.0103058
-InterpreterCmdTest.one_cmd_two_objects 1 0.00865335
-InterpreterCmdTest.one_cmd_two_game 1 0.0113953
----

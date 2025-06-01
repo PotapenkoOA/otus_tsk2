@@ -92,6 +92,10 @@ starship_EXTERNAL_OBJECTS =
 
 starship: CMakeFiles/starship.dir/main.cpp.o
 starship: CMakeFiles/starship.dir/build.make
+starship: /usr/lib/x86_64-linux-gnu/libboost_json.so.1.83.0
+starship: /usr/local/lib64/libssl.so
+starship: /usr/local/lib64/libcrypto.so
+starship: /usr/lib/x86_64-linux-gnu/libboost_container.so.1.83.0
 starship: CMakeFiles/starship.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable starship"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/starship.dir/link.txt --verbose=$(VERBOSE)

@@ -1,42 +1,63 @@
 #ifndef __ENDPOINT_H__
 #define __ENDPOINT_H__
 
+#include <boost/json.hpp>
 #include <string>
-#include <iostream>
 #include <map>
 
 using namespace std;
-
-#include "IResolverContainer.h"
-#include "json-develop/single_include/nlohmann/json.hpp"
-#include "command.h"
-#include "IoCcontainer.h"
-#include "CommandQueue.h"
 #include "game.h"
+
+#include "EPsrv/endpoint.h"
+#include "EPsrv/jwt_library.h"
 
 /// маршрутитзация и распаковка
 class Endpoint
 {
-    map<string, IGamePtr> *m_pRouter; 
+    ep_server srv;
+    map<string, IGamePtr> m_mapGames;
+    //mapGames["123"] = pgame;
    
     public:
-    Endpoint( map<string, IGamePtr> *pRouter )
+    Endpoint(  )
     {
-        m_pRouter = pRouter;
+       // m_pRouter = pRouter;
+       if( !srv.connected( 34567 ) )
+            return;
+    }
+
+    string ReceiveMessage()
+    {
+        string client_message = "";
+        srv.listen(client_message);
+        return client_message;
     }
 
     bool MakeCommand( string strMessage )
     {
         /// распаковка строки в структуру
-        nlohmann::json jmsg = nlohmann::json::parse(strMessage);
+        boost::json::value jmsg = boost::json::parse(strMessage);
+        string jwt = jmsg.at("jwt").as_string().c_str();
         
-        IGamePtr pgame = (*m_pRouter)[jmsg["gameId"]];
-        if( pgame == nullptr )
-        {            
-            throw bad_cast();
+        try{
+            verify_jwt( jwt );
+        }catch(exception& e)
+        {
+            cout<<"Exception!"<<endl;
+            return false;
         }
-
-        return pgame->AddCommand( jmsg );
+        boost::json::object base_value;
+        decode_jwt(jwt, base_value );
+        
+        string gameId =  base_value["game_id"].as_string().c_str();
+        
+        if( !m_mapGames.count(gameId) )
+        {
+            IGamePtr pgame = make_shared<AnyGame>();        
+            m_mapGames[gameId] = pgame;
+        }       
+        
+        return m_mapGames[gameId]->AddCommand( base_value["iss"].as_string().c_str(), jmsg );
     }
 };
 

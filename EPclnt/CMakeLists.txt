@@ -1,10 +1,14 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.10.0)
+project(agent VERSION 0.1.0 LANGUAGES C CXX)
 
-set(GOOGLETEST_VERSION 1.15.2)
+find_package(Boost COMPONENTS json)
 
-project(EPsrv VERSION 0.1.0 LANGUAGES C CXX)
+include_directories(${Boost_INCLUDE_DIRS})
 
-link_libraries(ws2_32 wsock32)
+# Настраиваем флаги для покрытия
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fprofile-arcs -ftest-coverage")
 
-add_executable(EPsrv main.cpp)
+add_executable(agent main.cpp)
 
+target_link_libraries(agent PRIVATE ${Boost_LIBRARIES})

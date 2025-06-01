@@ -1,12 +1,10 @@
 #ifndef _INTERPRET_COMMAND_
 #define _INTERPRET_COMMAND_
 
-#include <string>
-#include <map>
+#include <boost/json.hpp>
 #include <list>
+#include <string>
 #include <iostream>
-
-using namespace std;
 
 #include "IResolverContainer.h"
 
@@ -14,30 +12,40 @@ using namespace std;
 #include "IoCcontainer.h"
 #include "older_task/vector2.h"
 
-#include "json-develop/single_include/nlohmann/json.hpp"
+using namespace std;
 
 /// парсинг команды по имени из json
 class InterpretCommand: public ICommand
 {
     list<ICommandPtr> m_cmds;
-    public:
-    InterpretCommand( nlohmann::json jmsg , IObjectPtr object)
-    {
-        string cmdId = jmsg["cmdId"];
-        nlohmann::json arr = jmsg["args"];
 
-        if( object == nullptr )
-            throw bad_cast();
+    public:
+    InterpretCommand( boost::json::value  jmsg, IObjectPtr object)
+    {
+
+        //string objectId = jmsg.at("objectId").as_string().c_str();
+        string cmdId = jmsg.at("cmd").as_string().c_str();
+       
+
+        //if( object == nullptr )
+        //    throw bad_cast();
         
-       if( arr.size() == 2 )
-       {
-            cout << " a: "<< arr[0]<<","<< arr[1]<<" Object."+cmdId<<endl;   
-            Vector2 v( arr[0], arr[1] );
-            
-            ICommandPtr cmd = IoC::Resolve<ICommandPtr, IObjectPtr, Vector2 >("Object."+cmdId, object, v );
-            m_cmds.push_back(cmd);
+        try
+        {
+            boost::json::array arr = jmsg.at("args").get_array();
+            if( arr.size() == 2 )
+            {
+                cout << " a: "<< arr[0]<<","<< arr[1]<<" Object."+cmdId<<endl;  
+                int x =  arr[0].as_int64();
+                int y = arr[1].as_int64();
+                
+                Vector2 v( x, y );
+                
+                ICommandPtr cmd = IoC::Resolve<ICommandPtr, IObjectPtr, Vector2 >("Object."+cmdId, object, v );
+                m_cmds.push_back(cmd);                
+            }
         }
-        else
+        catch(exception& e)
         {
             ICommandPtr cmd = IoC::Resolve<ICommandPtr, IObjectPtr >("Object."+cmdId, object );
             m_cmds.push_back(cmd);

@@ -1,24 +1,16 @@
-cmake_minimum_required(VERSION 3.12)
-cmake_policy(SET CMP0144 NEW)
-cmake_policy(SET CMP0167 OLD)
+cmake_minimum_required(VERSION 3.10.0)
+project(game VERSION 0.1.0 LANGUAGES C CXX)
 
-project(EPsrv VERSION 0.1.0 LANGUAGES C CXX)
+find_package(Boost COMPONENTS json)
 
-set(GOOGLETEST_VERSION 1.15.2)
+find_package(OpenSSL REQUIRED)
 
-#set(BOOST_INCLUDEDIR "C:/boost_1_88_0")
-#set(Boost_LIBRARY_DIR "../boost_1_88_0/stage/lib")
+find_package(jwt-cpp CONFIG REQUIRED)
 
 
-#find_package(Boost COMPONENTS REQUIRED asio)
+include_directories(${Boost_INCLUDE_DIRS})
 
+add_executable(game main.cpp)
 
-
-
-add_executable(EPsrv main.cpp)
-
-
-#find_library(ws2_32_LIBRARY_PATH ws2_32)
-#add_executable(Executive ${exec_src})
-#target_link_libraries(Executive ${ws2_32_LIBRARY_PATH})
+target_link_libraries(game PRIVATE ${Boost_LIBRARIES} ${OpenSSL_LIBRARIES} jwt-cpp::jwt-cpp)
 

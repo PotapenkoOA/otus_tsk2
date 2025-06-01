@@ -1,6 +1,8 @@
 #ifndef __GAME_H__
 #define __GAME_H__
 
+#include <boost/json.hpp>
+
 #include "older_task/vector2.h"
 #include "InterpretCommand.h"
 #include "ThreadCmd.h"
@@ -14,11 +16,10 @@ using namespace std;
 class IGame
 {
     public:
-    virtual bool AddCommand(nlohmann::json jmsg) = 0;
+    virtual bool AddCommand( string objName, boost::json::value jmsg) = 0;
     virtual string GetState() = 0;
     virtual void Start() = 0;
     virtual void Stop() = 0;
-    virtual bool AddShip( string name, IObjectPtr newObject ) = 0;
 };
 
 using IGamePtr = std::shared_ptr<IGame>;
@@ -32,8 +33,7 @@ class AnyGame : public IGame
 
     public:
     AnyGame()
-    {
-       
+    {       
         pCmdQueue = make_shared<CmdQueue>();
         
         IoC::Resolve<ICommandPtr, string, IResolverContainer*>("IoC.Register", "Game.Objects", 
@@ -45,10 +45,13 @@ class AnyGame : public IGame
         
     }
     
-    bool AddCommand(nlohmann::json jmsg) 
+    bool AddCommand(string objName, boost::json::value jmsg) 
     {
-        string objectId = jmsg["objectId"];
-        auto pcmd = make_shared<InterpretCommand>(jmsg, m_mapObjects[objectId]);
+        //string objectId = jmsg.at("objectId").as_string().c_str();
+        if( m_mapObjects.count(objName) )
+            m_mapObjects[objName] = IoC::Resolve<IObjectPtr, IObjectPtr> ("IoC.Scope.New", nullptr );
+        
+        auto pcmd = make_shared<InterpretCommand>(jmsg, m_mapObjects[objName]);
 
         pCmdQueue->Push(pcmd);
 
@@ -60,16 +63,6 @@ class AnyGame : public IGame
         return "";
     }
     
-    bool AddShip( string name, IObjectPtr newObject )
-    {
-        if(m_mapObjects.count(name) > 0)
-            return false;
-
-        m_mapObjects[name] = newObject;
-        
-        return true;
-    }
-
     bool AddRuls( IObjectPtr newRules )
     {
         m_mRules = newRules;       
