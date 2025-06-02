@@ -1,5 +1,0 @@
-if(EXISTS "/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/starship[1]_tests.cmake")
-  include("/home/vboxuser/Documents/microservices/otus_3tsk/out/build/GCC 13.3.0 x86_64-linux-gnu/starship[1]_tests.cmake")
-else()
-  add_test(starship_NOT_BUILT starship_NOT_BUILT)
-endif()
