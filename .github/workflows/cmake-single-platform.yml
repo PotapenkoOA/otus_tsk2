@@ -35,10 +35,10 @@ jobs:
               run: cd parser/build; make; ./parser; 
             
             - name: autorization configure
-              run: mkdir autorization; mkdir autorization/build; cd autorization/build; cmake ..; 
+              run: mkdir autorization/build; cd autorization/build; cmake ..; 
 
             - name: agent configure
-              run: mkdir agent; mkdir agent/build; cd agent/build; cmake ..; 
+              run: mkdir agent/build; cd agent/build; cmake ..; 
             
             - name: configure
               run: mkdir build; cd build; cmake ..; 
