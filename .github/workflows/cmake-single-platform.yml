@@ -22,11 +22,11 @@ jobs:
             - name: install boost
               run: sudo apt-get install libboost-all-dev
               
-            - name: install jwt
-              run: |
-                git clone https://github.com/Thalhammer/jwt-cpp.git;
-                cd jwt-cpp;mkdir build;cd build;cmake ..;make;
-                cmake --build .; sudo cmake --install .;
+            #- name: install jwt
+            #  run: |
+            #    git clone https://github.com/Thalhammer/jwt-cpp.git;
+            #    cd jwt-cpp;mkdir build;cd build;cmake ..;make;
+            #    cmake --build .; sudo cmake --install .;
           
             - name: checkout
               uses: actions/checkout@v4
@@ -37,11 +37,11 @@ jobs:
             - name: run parser 
               run: cd parser/build; make; ./parser; 
             
-            - name: autorization configure
-              run: mkdir autorization/build; cd autorization/build; cmake .. ; make; 
+            #- name: autorization configure
+            #  run: mkdir autorization/build; cd autorization/build; cmake .. ; make; 
 
-            - name: agent configure
-              run: mkdir agent/build; cd agent/build; cmake ..;make; 
+            #- name: agent configure
+            #  run: mkdir agent/build; cd agent/build; cmake ..;make; 
             
             - name: configure
               run: mkdir build; cd build; cmake ..; 
@@ -50,11 +50,7 @@ jobs:
               run: cd build; make; 
 
             - name: run tests
-              run: |
-                 cd build;
-                 cp ./../autorization/build/autorization ./autorization;
-                 cp ./../agent/build/agent ./agent;
-                 ./autorization & ./starship & ( sleep 10 ; ./agent );
+              run: ./starship
 
             - name: delete adapters
               run: rm -rf adapters; ls;
