@@ -35,6 +35,7 @@ class Endpoint
 
     bool MakeCommand( string strMessage )
     {
+       
         /// распаковка строки в структуру
         boost::json::value jmsg = boost::json::parse(strMessage);
         string jwt = jmsg.at("jwt").as_string().c_str();
@@ -48,7 +49,6 @@ class Endpoint
         }
         boost::json::object base_value;
         decode_jwt(jwt, base_value );
-        
         string gameId =  base_value["game_id"].as_string().c_str();
         
         if( !m_mapGames.count(gameId) )
@@ -56,7 +56,7 @@ class Endpoint
             IGamePtr pgame = make_shared<AnyGame>();        
             m_mapGames[gameId] = pgame;
         }       
-        
+         
         return m_mapGames[gameId]->AddCommand( base_value["iss"].as_string().c_str(), jmsg );
     }
 };

@@ -35,7 +35,7 @@ class InterpretCommand: public ICommand
             boost::json::array arr = jmsg.at("args").get_array();
             if( arr.size() == 2 )
             {
-                cout << " a: "<< arr[0]<<","<< arr[1]<<" Object."+cmdId<<endl;  
+                //cout << " a: "<< arr[0]<<","<< arr[1]<<" Object."+cmdId<<endl;  
                 int x =  arr[0].as_int64();
                 int y = arr[1].as_int64();
                 
@@ -47,6 +47,7 @@ class InterpretCommand: public ICommand
         }
         catch(exception& e)
         {
+            //cout<<cmdId<<endl;
             ICommandPtr cmd = IoC::Resolve<ICommandPtr, IObjectPtr >("Object."+cmdId, object );
             m_cmds.push_back(cmd);
         }

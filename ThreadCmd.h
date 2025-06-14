@@ -4,6 +4,7 @@
 #include "command.h"
 #include "CommandQueue.h"
 #include "exception_library.h"
+#include "states.h"
 
 #include <iostream>
 using namespace std;
@@ -11,42 +12,31 @@ using namespace std;
 
 class StartCmd: public ICommand
 {
-    CmdQueuePtr m_pQueue;
+    IStatePtr m_pState;
     
     public:
-    StartCmd(CmdQueuePtr pQueue)
+    StartCmd(IStatePtr pStartState)
     {
-        m_pQueue =  pQueue;
+        m_pState =  pStartState;
       
     }
     void Execute()
     {        
         thread t(
-            [&](CmdQueuePtr pQueue)
+            [&](IStatePtr pState)
             {
-                ICommandPtr pCmd = pQueue->Pull();
-                while( pCmd != nullptr )
-                {
-                    
-                    try{
-                        pCmd->Execute() ;
-                    }
-                    catch(IException *exc)
-                    {
-                        pQueue->Push(ExceptionHandler::Handle( pCmd, exc ));
-                    }
-                    pCmd = pQueue->Pull();
+                while( pState =  pState->Handle() )
+                { 
                 }
                 
-            }, ref(m_pQueue)
+            }, ref(m_pState)
         );
         t.join();
     }
 };
 
 class HardStopCmd: public ICommand
-{
-    
+{    
     public:
     HardStopCmd()
     {;}
@@ -69,7 +59,9 @@ class SoftStopCmd: public ICommand
     void Execute()
     {
         IoC::Resolve<ICommand*, string,  IResolverContainer*>( "IoC.Register", "CommandQueue.Push", 
-            new ResolverContainer< function<void(ICommand*)>> ( function<void(ICommand*)>([](ICommand* cmd){}) ) )->Execute();
+            new ResolverContainer< function<void(ICommand*)>> ( 
+                function<void(ICommand*)>([](ICommand* cmd){}) 
+            ) )->Execute();
     }
 };
 

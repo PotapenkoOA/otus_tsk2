@@ -8,12 +8,12 @@
 class RegisterCommand: public ICommand
 {
     string _dependency;
-    IResolverContainer *_pcontainer;
+    IResolverContainerPtr _pcontainer;
 
     IObjectPtr _currentScope;
 
 public:
-    RegisterCommand( IObjectPtr currentScope, string dependency, IResolverContainer* pcontainer )
+    RegisterCommand( IObjectPtr currentScope, string dependency, IResolverContainerPtr pcontainer )
     {
         _currentScope = currentScope;
         _dependency = dependency;

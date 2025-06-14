@@ -34,7 +34,7 @@ string getType(IException *e)
 }
 
 
-string getType(IResolverContainer *c)
+string getType(IResolverContainerPtr c)
 {
     int status; 
     const type_info& typeInfo = typeid(*c);
