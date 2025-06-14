@@ -8,7 +8,7 @@ find_package(Boost COMPONENTS json)
 
 find_package(OpenSSL REQUIRED)
 
-find_package(jwt-cpp CONFIG REQUIRED)
+#find_package(jwt-cpp CONFIG REQUIRED)
 
 #enable_testing() #to  discover tests in test explorer 
 
@@ -34,7 +34,7 @@ include_directories(googlemock/include) # this is so we can #include <gtest/gtes
 
 add_executable(starship main.cpp)
 
-target_link_libraries(starship PRIVATE ${OpenSSL_LIBRARIES} jwt-cpp::jwt-cpp)
+#target_link_libraries(starship PRIVATE ${OpenSSL_LIBRARIES} jwt-cpp::jwt-cpp)
 
 target_link_libraries(starship PRIVATE ${Boost_LIBRARIES})
 target_link_libraries(starship PRIVATE gtest) # link google test to this executable
