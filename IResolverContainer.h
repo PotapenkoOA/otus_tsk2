@@ -12,6 +12,8 @@ class IResolverContainer
         virtual ~IResolverContainer() = default;
 };
 
+using IResolverContainerPtr = shared_ptr<IResolverContainer>;
+
 template<typename Type >
 class ResolverContainer: public IResolverContainer
 {
@@ -29,8 +31,13 @@ public:
     }
 };
 
-using IResolverContainerPtr = shared_ptr<IResolverContainer>;
+using IObjectPtr = shared_ptr<map< string, IResolverContainerPtr>>;
 
-using IObjectPtr = shared_ptr<map< string, IResolverContainer*>>;
+template<typename ResolverFuncPrototype>
+IResolverContainerPtr make_container(ResolverFuncPrototype resolver)
+{
+    return static_pointer_cast<IResolverContainer>(
+        make_shared<ResolverContainer <ResolverFuncPrototype>> (resolver) );
+}
 
 #endif

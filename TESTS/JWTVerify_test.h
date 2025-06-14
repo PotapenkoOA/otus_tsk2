@@ -41,9 +41,9 @@ class MOCK_CMD:public ICommand{
 /// @brief успешная проверка 
 TEST(JWTVerify, good_jwt_msg )
 {
-    IoC::Resolve<ICommandPtr, string, IResolverContainer*>("IoC.Register", "Object.move", 
-        new ResolverContainer< function<ICommandPtr(IObjectPtr)>> (
-        function([](IObjectPtr obj){
+    IoC::Resolve<ICommandPtr, string, IResolverContainerPtr>("IoC.Register", "Object.move", 
+        make_container (
+        function<ICommandPtr(IObjectPtr)>([](IObjectPtr obj){
            cout<<"lets move!\n";
            return make_shared<MOCK_CMD>();
         })

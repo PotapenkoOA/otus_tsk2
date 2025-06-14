@@ -13,16 +13,16 @@ class IoC
 
 public: 
 
- 
     template<typename T, typename ...Args >
     static T Resolve( string dependency, Args... args )
     {        
-        ResolverContainer<function<T(Args...)>>* pContainer = 
-                    dynamic_cast<ResolverContainer<function<T(Args...)>>*>(IoC::resolver->Resolve(dependency));
+        using ResolverContainerType = ResolverContainer<function<T(Args...)>>;
+        shared_ptr<ResolverContainerType> container
+                = dynamic_pointer_cast<ResolverContainerType>(IoC::resolver->Resolve(dependency));
         
-        //cout<<"IoC::Resolve:"<<dependency<<" "<< getType(IoC::resolver->Resolve(dependency))<<" pContainer "<<pContainer<<endl<<endl;  
-        if(pContainer)
-            return  pContainer->get()(args...);
+        //cout<<dependency<<" "<< getType(IoC::resolver->Resolve(dependency))<<""<<IoC::resolver->Resolve(dependency)<<""<<container<<endl;  
+        if(container)
+            return  container->get()(args...);
         else throw std::bad_cast();  
     }
 };

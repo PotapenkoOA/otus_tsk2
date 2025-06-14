@@ -36,8 +36,8 @@ class AnyGame : public IGame
     {       
         pCmdQueue = make_shared<CmdQueue>();
         
-        IoC::Resolve<ICommandPtr, string, IResolverContainer*>("IoC.Register", "Game.Objects", 
-            new ResolverContainer< function<IObjectPtr(string)>> (
+        IoC::Resolve<ICommandPtr, string, IResolverContainerPtr>("IoC.Register", "Game.Objects", 
+            make_container (
             function<IObjectPtr(string)>([&](string objectId){
                 return m_mapObjects[objectId];
             })

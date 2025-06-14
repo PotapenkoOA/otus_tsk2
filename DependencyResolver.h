@@ -17,7 +17,7 @@ protected:
 public:
     virtual  ~IDependencyResolver() = default;
 
-    virtual IResolverContainer* Resolve(string dependency) = 0;
+    virtual IResolverContainerPtr Resolve(string dependency) = 0;
 };
 
 class DependencyResolver: public IDependencyResolver
@@ -30,11 +30,12 @@ class DependencyResolver: public IDependencyResolver
     DependencyResolver()
     {
         _pCurrentScope = nullptr;
-        _pRootScope = make_shared<map< string, IResolverContainer*>>();
+        _pRootScope = make_shared<map< string, IResolverContainerPtr>>();
 
         // _dependencies["IoC.Scope.Current.Set"] - получает скоуп и делает его текущим
-        map< string, IResolverContainer*>* pRootScope = _pRootScope.get();
-        (*pRootScope)["IoC.Scope.Current.Set"] = new ResolverContainer<function< void(IObjectPtr)> >(
+        map< string, IResolverContainerPtr>* pRootScope = _pRootScope.get();
+
+        (*_pRootScope)["IoC.Scope.Current.Set"] = make_container (
             function< void(IObjectPtr)> (
                 [&](IObjectPtr current)
                 {
@@ -44,7 +45,7 @@ class DependencyResolver: public IDependencyResolver
         );
 
         // _dependencies["IoC.Scope.Current.Clear"] - очищает текущий скоуп
-        (*pRootScope)["IoC.Scope.Current.Clear"] = new ResolverContainer<function< void(void)>>(
+        (*_pRootScope)["IoC.Scope.Current.Clear"] = make_container (
             function< void(void)> (
                 [&](void)
                 {
@@ -54,7 +55,7 @@ class DependencyResolver: public IDependencyResolver
         );
 
         // _dependencies["IoC.Scope.Current"] - возвращает текущий скоуп
-        (*pRootScope)["IoC.Scope.Current"] = new ResolverContainer<function< IObjectPtr(void)>>(
+        (*_pRootScope)["IoC.Scope.Current"] = make_container (
             function< IObjectPtr(void)> (
                 [&](void)
                 {
@@ -62,11 +63,10 @@ class DependencyResolver: public IDependencyResolver
                 }
             )
         );
-
         
         //  _dependencies["IoC.Scope.Parent"] = exception для рутового скоупа
-        (*pRootScope)["IoC.Scope.Parent"] = new ResolverContainer< function< IObjectPtr(void)>>(
-            function< IObjectPtr(void)>([]()
+        (*_pRootScope)["IoC.Scope.Parent"] = make_container (
+            function< IObjectPtr(void)>( []()
             {
                 throw exception();
                 return nullptr;
@@ -74,26 +74,29 @@ class DependencyResolver: public IDependencyResolver
         );
            
         //  _dependencies["IoC.Scope.Create.Empty"] = создание пустого скоупа
-        (*_pRootScope)["IoC.Scope.New.Empty"] = new ResolverContainer<function< IObjectPtr(void)>>(
-            function< IObjectPtr(void)> ( []() { return  make_shared<map< string, IResolverContainer*>>();})
+        (*_pRootScope)["IoC.Scope.New.Empty"] = make_container (
+            function< IObjectPtr(void)> ( []() 
+            { 
+                return  make_shared<map< string, IResolverContainerPtr>>();
+            })
         );
 
         //  _dependencies["IoC.Scope.Create"] - создание скоупа с перентом, если указан
-        (*_pRootScope)["IoC.Scope.New"] = new ResolverContainer<function< IObjectPtr(IObjectPtr)>>(
+        (*_pRootScope)["IoC.Scope.New"] = make_container(
             function< IObjectPtr(IObjectPtr)> (
                 [&](IObjectPtr parent)
                 {
-                    IObjectPtr pCreatingScope = 
-                            ((ResolverContainer<function< IObjectPtr(void)>>*)(*_pRootScope)["IoC.Scope.New.Empty"])->get()();
+                    shared_ptr<ResolverContainer<function<IObjectPtr(void)>>> container 
+                                    = dynamic_pointer_cast<ResolverContainer<function<IObjectPtr(void)>>> ((*_pRootScope)["IoC.Scope.New.Empty"]);
+                    IObjectPtr pCreatingScope = container->get()();
                     
-                    //map<string, IResolverContainer*>* parent
                     if( parent == nullptr )
                     {
-                        ResolverContainer<function< IObjectPtr(void)>> *pContainer =
-                        (ResolverContainer<function< IObjectPtr(void)>> *) (*_pRootScope)["IoC.Scope.Current"];
+                        shared_ptr<ResolverContainer<function< IObjectPtr(void)>>> pContainer 
+                                    = dynamic_pointer_cast<ResolverContainer<function<IObjectPtr(void)>>>((*_pRootScope)["IoC.Scope.Current"]);
             
                         parent = pContainer->get()(); 
-                        (*pCreatingScope)["IoC.Scope.Parent"] = new ResolverContainer<function<IObjectPtr(void)>>(
+                        (*pCreatingScope)["IoC.Scope.Parent"] = make_container (
                             function<IObjectPtr(void)>([parent]()
                             {      
                                 return parent;
@@ -102,7 +105,7 @@ class DependencyResolver: public IDependencyResolver
                     }
                     else
                     {
-                        (*pCreatingScope)["IoC.Scope.Parent"] = new ResolverContainer<function<IObjectPtr(void)>>(
+                        (*pCreatingScope)["IoC.Scope.Parent"] = make_container (
                             function<IObjectPtr(void)>([parent]()
                             { 
                                 return parent;
@@ -115,9 +118,9 @@ class DependencyResolver: public IDependencyResolver
         );
 
         // инициализация базовых потребностей
-        (*_pRootScope)["IoC.Register"] =  new ResolverContainer<function<ICommandPtr(string, IResolverContainer*)>>( 
-            function< ICommandPtr ( string, IResolverContainer* )>(
-                [&](string dependency, IResolverContainer* pResolver)
+        (*_pRootScope)["IoC.Register"] =  make_container ( 
+            function< ICommandPtr ( string, IResolverContainerPtr )>(
+                [&](string dependency, IResolverContainerPtr pResolver)
                 {
                     return make_shared<RegisterCommand> ((_pCurrentScope != nullptr)? _pCurrentScope : _pRootScope, 
                         dependency, pResolver );
@@ -126,28 +129,29 @@ class DependencyResolver: public IDependencyResolver
         );  
     }
 
-    IResolverContainer* Resolve( string dependency )
+    IResolverContainerPtr Resolve( string dependency )
     {
-        ResolverContainer<function< IObjectPtr(void)>> *pContainer =
-            (ResolverContainer<function< IObjectPtr(void)>> *) (*_pRootScope)["IoC.Scope.Current"];
+        shared_ptr<ResolverContainer<function< IObjectPtr(void)>>> pContainer =
+            dynamic_pointer_cast<ResolverContainer<function<IObjectPtr(void)>>> ((*_pRootScope)["IoC.Scope.Current"]);
         return Resolve(pContainer->get()(), dependency);
     }
 
-    IResolverContainer* Resolve( IObjectPtr dependencies, string dependency )
+    IResolverContainerPtr Resolve( IObjectPtr dependencies, string dependency )
     {
+        
         IObjectPtr _dependencies = dependencies;
         while( 1 )
         {
             if( _dependencies->count(dependency) != 0 )
             {
-                //cout<<_dependencies<<" find dependency:"<<" "<<dependency<<endl;
-                return (*_dependencies)[dependency];
+               //cout<< "Resolve:" << dependency<<"scope"<< dependencies <<endl;
+               return (*_dependencies)[dependency];
             }
             else  
             {
                 /// обратиться к родительскому скоупу
-                ResolverContainer<function<IObjectPtr(void)>>* pContainer =
-                        (ResolverContainer <function<IObjectPtr(void)>>*)(*_dependencies)[ "IoC.Scope.Parent" ];
+                shared_ptr<ResolverContainer<function< IObjectPtr(void)>>> pContainer =
+                    dynamic_pointer_cast<ResolverContainer<function<IObjectPtr(void)>>> ((*_dependencies)["IoC.Scope.Parent"]);                        
                 
                 _dependencies = pContainer->get()();
                
